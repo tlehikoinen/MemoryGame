@@ -25,7 +25,6 @@ C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\bin\Debug\netcoreapp3.1\MemoryGa
 C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\bin\Debug\netcoreapp3.1\MemoryGame.pdb
 C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\bin\Debug\netcoreapp3.1\CsvHelper.dll
 C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.Form1.resources
-C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.StartingScreen.resources
 C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.csproj.GenerateResource.cache
 C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.AssemblyInfoInputs.cache
 C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.AssemblyInfo.cs
@@ -37,3 +36,4 @@ C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGa
 C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.csproj.AssemblyReference.cache
 C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.Properties.Resources.resources
+C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.Form2.resources

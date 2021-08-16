@@ -5,18 +5,91 @@ using System.Text;
 
 namespace MemoryGame {
 
-    public class Memory {
+    public class Memory : Player {
+        public Memory() {
+            InitialiseFolder();
+        }
+
+        public static void InitialiseFolder() {
+            string path = Environment.ExpandEnvironmentVariables("%TEMP%");
+            Directory.CreateDirectory(path);
+            Boolean file = File.Exists(path + "\\memorygame.txt");
+            try {
+                File.Create(path + "\\memorygame.txt");
+            }
+            catch {
+                System.Diagnostics.Debug.WriteLine("Already exist");
+            }
+            System.Diagnostics.Debug.WriteLine(file);
+
+        }
+
+        public enum State {
+            singleplayer,
+            multiplayer,
+            vsComputer
+        }
+
+        public enum DeckSelection {
+            cats,
+            characters
+        }
+
+        public enum Gridsize {
+            small,
+            medium,
+            big
+        }
 
         Player player1;
         Player player2;
-        
-        public Memory() { }
-        public void setMemoryPlayers(Player player1, Player player2) {
-            this.player1 = player1;
-            this.player2 = player2;
+        ComputerPlayer player3;
+        State gameState = State.singleplayer;
+        DeckSelection deckSelection;
+        Gridsize gridSize = Gridsize.small;
+
+
+        public void setGameState(State state) {
+            this.gameState = state;
+        }
+        public State getGameState() {
+            return this.gameState;
         }
 
+        public void setDeckSelection(DeckSelection deck) {
+            this.deckSelection = deck;
+        }
+        public DeckSelection getDeckSelection() {
+            return this.deckSelection;
+        }
+        public void setGridsize(Gridsize size) { 
+            this.gridSize = size;
+        }
+        public Gridsize getGridSize() {
+            return this.gridSize;
+        }
 
+        public void setMemoryPlayer1(Player player) {
+            this.player1 = player;
+        }
+
+        public void setMemoryPlayer2(Player player) {
+            this.player2 = player;
+        }
+        
+        public void setComputerPlayer(ComputerPlayer player) {
+            this.player3 = player;
+        }
+
+        public Player getMemoryPlayer1() {
+            return this.player1;
+        }
+        public Player getMemoryPlayer2() {
+            return this.player2;
+        }
+        public ComputerPlayer getComputerPlayer() {
+            return this.player3;
+        }
     }
     public class Player {
         public string name { get; set; }
@@ -40,9 +113,16 @@ namespace MemoryGame {
 
     public class ComputerPlayer : Player {
 
-        string[] adjectives = { "Furious, Soft, unaccountable, zany, moldy, mountainous, flakyubiquitous, utter" };
-        string[] names = { "horn, copper, acoustics, servant, company, lumber, crime, station, story, bushes, government, back" };
+        string[] adjectives = { "Furious", "Soft", "Unaccountable", "Zany", "Moldy", "Mountainous", "Flakyubiquitous", "Utter" };
+        string[] names = { "Horn", "Copper", "Acoustics", "Servant", "Company", "Lumber", "Crime", "Station", "Story", "Bushes", "Government", "Back" };
 
+        public string formName() {
+            string name = "";
+            var random = new Random();
+            name += adjectives[random.Next(0, adjectives.Length-1)];
+            name += names[random.Next(0, names.Length-1)];
+            return name;
+        }
 
         public enum Skillset {
             easy,
@@ -54,6 +134,11 @@ namespace MemoryGame {
 
         public ComputerPlayer(Skillset skillset) {
             this.difficulty = skillset;
+            this.name = formName();
+        }
+
+        public string getComputerPlayerInfo() {
+            return this.name;
         }
 
 
