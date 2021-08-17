@@ -75,5 +75,14 @@ namespace MemoryGame {
             f.Show();
             this.Visible = false;
         }
+
+        private void button4_Click(object sender, EventArgs e) {
+            System.Diagnostics.Debug.WriteLine("From button 4");
+            System.Diagnostics.Debug.WriteLine(game.getData());
+        }
+
+        private void button5_Click(object sender, EventArgs e) {
+            game.somethingNames();
+        }
     }
 }

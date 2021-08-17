@@ -2,14 +2,20 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using System.Globalization;
+using CsvHelper;
 
 namespace MemoryGame {
 
     public class Memory {
-
+        private static string path = Environment.ExpandEnvironmentVariables("%TEMP%");
+        private static string fileName = "memorygamedata.txt";
+        FileHandler handler = new FileHandler(path, fileName);
         Player player1;
         Player player2;
         ComputerPlayer player3;
+        List<String> existingPlayerNames;
+        List<String[]> playerData;
         State gameState = State.none;
         DeckSelection deckSelection = DeckSelection.none;
         GridSize gridSize = GridSize.small;
@@ -18,18 +24,26 @@ namespace MemoryGame {
             InitialiseFolder();
         }
 
-        public static void InitialiseFolder() {
-            string path = Environment.ExpandEnvironmentVariables("%TEMP%");
-            Directory.CreateDirectory(path);
-            Boolean file = File.Exists(path + "\\memorygame.txt");
-            try {
-                File.Create(path + "\\memorygame.txt");
-            }
-            catch {
-                System.Diagnostics.Debug.WriteLine("Already exist");
-            }
-            System.Diagnostics.Debug.WriteLine(file);
+        public void InitialiseFolder() {
+            string path = Memory.path;
+            string fileName = Memory.fileName;
+            string pathToFile = Path.Combine(path, fileName);
+            string header1 = "Name, GamesPlayed, GamesWon, Guesses, CorrectGuesses";
 
+            Directory.CreateDirectory(path);
+
+            if (!File.Exists(pathToFile)) {
+                try {
+                    var file = File.Create(pathToFile);
+                    file.Close();
+                    handler.addRow(header1);
+                    System.Diagnostics.Debug.WriteLine("Created a file");
+                }
+                catch {
+                    System.Diagnostics.Debug.WriteLine("Some error");
+                }
+            }
+            setData();
         }
 
         public enum State {
@@ -73,14 +87,38 @@ namespace MemoryGame {
 
         public void setMemoryPlayer1(Player player) {
             this.player1 = player;
+            this.handler.addRow(this.player1.recordForm());
+        }
+
+        public void setExistingMemoryPlayer(string name, int boxNumber) {
+            Player player = new Player();
+            System.Diagnostics.Debug.WriteLine(name);
+            foreach(string[] item in playerData) {
+                if (item[0] == name) {
+                    player.SetPlayerInfo(item[0], int.Parse(item[1]), int.Parse(item[2]), int.Parse(item[3]), int.Parse(item[4]));
+                    break;
+                }
+            }
+            switch (boxNumber) {
+                case 1: {
+                    setMemoryPlayer1(player);
+                    break;
+                }
+                case 2: {
+                    setMemoryPlayer2(player);
+                    break;
+                }
+            }
         }
 
         public void setMemoryPlayer2(Player player) {
             this.player2 = player;
+            this.handler.addRow(this.player2.recordForm());
         }
-        
+
         public void setComputerPlayer(ComputerPlayer player) {
             this.player3 = player;
+            this.handler.addRow(this.player3.recordForm());
         }
 
         public Player getMemoryPlayer1() {
@@ -92,6 +130,29 @@ namespace MemoryGame {
         public ComputerPlayer getComputerPlayer() {
             return this.player3;
         }
+
+        public string getPath() {
+            return Memory.path;
+        }
+        public string getFile() {
+            return Memory.fileName;
+        }
+        public List<String[]> getData() {
+            return this.playerData;
+        }
+        public List<String> getExistingPlayerNames() {
+            return this.existingPlayerNames;
+        }
+
+        public void setData() {
+            this.playerData = handler.parseData();
+            this.existingPlayerNames = handler.parseNames();
+        }
+
+        public void somethingNames() {
+            handler.parseData();
+        }
+
     }
     public class Player {
         public string name { get; set; }
@@ -110,6 +171,12 @@ namespace MemoryGame {
             this.guesses = guesses;
             this.correctGuesses = correctGuesses;
         }
+
+        public string recordForm() {
+            return this.name + ',' + this.gamesPlayed + ',' + this.gamesWon + ',' + this.guesses + ',' + this.correctGuesses;
+            //return playerData;
+        }
+
 
     }
 
@@ -137,6 +204,10 @@ namespace MemoryGame {
         public ComputerPlayer(Skillset skillset) {
             this.difficulty = skillset;
             this.name = formName();
+            this.gamesPlayed = 0;
+            this.gamesWon = 0;
+            this.guesses = 0;
+            this.correctGuesses = 0;
         }
 
         public string getComputerPlayerInfo() {
@@ -146,6 +217,66 @@ namespace MemoryGame {
         public Skillset getComputerSkillset() {
             return this.difficulty;
         }
+
+
+    }
+
+    public class FileHandler {
+        string csvPath;
+        public string data { get; set; }
+        public FileHandler(string path, string file) {
+            this.csvPath = Path.Combine(path, file);
+        }
+
+        public string getData() {
+            string read = File.ReadAllText(this.csvPath);
+            System.Diagnostics.Debug.WriteLine("okei");
+            System.Diagnostics.Debug.WriteLine(read);
+            System.Diagnostics.Debug.WriteLine("okei");
+
+            return read;
+        }
+
+        public void addRow(string data) {
+            string[] splitted = data.Split(",");
+            string name = splitted[0];
+            Boolean alreadyExists = false;
+            var existingData = parseData();
+            foreach (string[] item in existingData) {
+                if (item[0] == name) {
+                    alreadyExists = true;
+                    break;
+                }
+            }
+            if (!alreadyExists)
+                File.AppendAllLines(this.csvPath, new[] { data.ToString() });
+
+        }
+
+        public List<String[]> parseData() {
+            string[] lines = File.ReadAllLines(csvPath);
+            List<string[]> playerData = new List<string[]>();
+            for (int i = 1; i < lines.Length; i++) {
+                string[] splitted = lines[i].Split(',');
+                playerData.Add(splitted);
+            }
+            return playerData;
+        }
+
+        public List<String> parseNames() {
+            string[] lines = File.ReadAllLines(csvPath);
+            List<string> playerNames = new List<string>();
+            for (int i = 1; i < lines.Length; i++) {
+                string[] splitted = lines[i].Split(',');
+                playerNames.Add(splitted[0]);
+            }
+            return playerNames;
+        }
+
+
+
+
+
 
 
     }

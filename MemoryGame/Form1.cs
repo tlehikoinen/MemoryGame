@@ -27,9 +27,8 @@ namespace MemoryGame
             initialiseComputerDifficulties();
             setGameOptionImages();
             openHomePage();
-            //var nice = new StartingScreen();
-            //nice.Show();
-            //this.Visible = false;
+            setStatistics();
+            setExistingPlayers();
         }
 
     /* HELPER FUNCTIONS */
@@ -58,6 +57,30 @@ namespace MemoryGame
             dogsRadioImage.Image = Image.FromFile("../../../Pictures/Game/marioRadio.png");
             errorPicture.Image = Image.FromFile("../../../Pictures/Game/error.png");
         }
+
+        private void setExistingPlayers() {
+            var data = game.getExistingPlayerNames();
+            foreach (string item in data) {
+                existingUserComboBox1.Items.Add(item);
+                existingUserComboBox2.Items.Add(item);
+            }
+        }
+        
+        private void setStatistics() {
+            var data = game.getData();
+            dataGridView1.ColumnCount = 5;
+            dataGridView1.Columns[0].Name = "Name";
+            dataGridView1.Columns[1].Name = "Games";
+            dataGridView1.Columns[2].Name = "GamesWon";
+            dataGridView1.Columns[3].Name = "Guesses";
+            dataGridView1.Columns[4].Name = "CorrectGuesses";
+
+            foreach (string[] item in data) {
+                dataGridView1.Rows.Add(item);
+            }
+
+
+        }
         public void hideAllMainPanels() { 
             vsPlayerPanel.Hide();
             vsComputerPanel.Hide();
@@ -66,6 +89,7 @@ namespace MemoryGame
             helpPanel.Hide();
             gameOptionPanel.Hide();
             homePanel.Hide();
+            errorPanel.Hide();
         }
 
         public void showGameOptionPanel() {
@@ -181,10 +205,12 @@ namespace MemoryGame
 
         private void existingUserComboBox1_SelectedIndexChanged(object sender, EventArgs e) {
 
+
         }
 
         private void existingUserBtn1_Click(object sender, EventArgs e) {
-            
+            string name = existingUserComboBox1.Text;
+            game.setExistingMemoryPlayer(name, 1);
 
         }
 
@@ -208,6 +234,10 @@ namespace MemoryGame
 
         private void existingUserComboBox2_SelectedIndexChanged(object sender, EventArgs e) {
 
+        }
+        private void existingUserBtn2_Click(object sender, EventArgs e) {
+            string name = existingUserComboBox2.Text;
+            game.setExistingMemoryPlayer(name, 2);
         }
 
 
@@ -314,6 +344,19 @@ namespace MemoryGame
         private void errorPicture_Click(object sender, EventArgs e) {
 
         }
+
+        private void statisticsTextBox_TextChanged(object sender, EventArgs e) {
+
+        }
+
+        private void statisticsHeader_Click(object sender, EventArgs e) {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+
+        }
+
 
 
 
