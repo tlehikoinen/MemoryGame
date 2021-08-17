@@ -15,12 +15,14 @@ namespace MemoryGame
     public partial class Form1 : Form {
         Memory game = new Memory();
 
-        public Form1(Memory game) {
-            this.game = game;
+        public Form1() {
+            //this.game = game;
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
+            Memory game = new Memory();
+            this.game = game;
             initialiseGridSizes();
             initialiseComputerDifficulties();
             setGameOptionImages();
@@ -30,57 +32,32 @@ namespace MemoryGame
             //this.Visible = false;
         }
 
-        /* HELPER FUNCTIONS */
-
+    /* HELPER FUNCTIONS */
         private void openHomePage() {
             hideAllMainPanels();
             homePanel.Visible = true;
-
         }
-        
         private void toggleTwoPanels(Panel toVisible, Panel toHide) {
             toHide.Hide();
             toVisible.Visible = true;
         }
-
         private void initialiseGridSizes() {
-            gridSizes.Items.Add(Memory.Gridsize.small);
-            gridSizes.Items.Add(Memory.Gridsize.medium);
-            gridSizes.Items.Add(Memory.Gridsize.big);
-
+            foreach (Memory.GridSize size in Memory.GridSize.GetValues(typeof(Memory.GridSize))) {
+                gridSizes.Items.Add(size);
+            }
+            gridSizes.SelectedIndex = 1;
         }
         private void initialiseComputerDifficulties() {
-            computerDifficulties.Items.Add(ComputerPlayer.Skillset.easy);
-            computerDifficulties.Items.Add(ComputerPlayer.Skillset.medium);
-            computerDifficulties.Items.Add(ComputerPlayer.Skillset.hard);
+            foreach (ComputerPlayer.Skillset skill in ComputerPlayer.Skillset.GetValues(typeof(ComputerPlayer.Skillset))) {
+                computerDifficulties.Items.Add(skill);
+            }
         }
         private void setGameOptionImages() {
             logoPictureBox.Image = Image.FromFile("../../../Pictures/Game/logo.png");
             catsRadioImage.Image = Image.FromFile("../../../Pictures/Game/catRadio.png");
             dogsRadioImage.Image = Image.FromFile("../../../Pictures/Game/marioRadio.png");
+            errorPicture.Image = Image.FromFile("../../../Pictures/Game/error.png");
         }
-
-        //private void button1_Click(object sender, EventArgs e) {
-        //    //InitialDataFolder("C:\\Temp\\", "tommi");
-        //    Player player = new Player();
-        //    Player player2 = new Player();
-
-
-        //    game.setMemoryPlayers(player, player2);
-        //    MessageBox.Show(player.name);
-
-        //}
-
-        private void button2_Click(object sender, EventArgs e) {
-            //var f = new Form3();
-            //f.Owner = this;
-            //f.Show();
-            //this.Visible = false;
-            MessageBox.Show("ok");
-
-
-        }
-
         public void hideAllMainPanels() { 
             vsPlayerPanel.Hide();
             vsComputerPanel.Hide();
@@ -98,7 +75,7 @@ namespace MemoryGame
             vsSinglePanel.Visible = true;
         }
 
-
+        // Opens panel sent as parameter, in case of vsComputer and vsPlayer, vsSingle and gameoption panels are also kept open
         public void showPanel(Panel showPanel) {
             hideAllMainPanels();
             showPanel.Visible = true;
@@ -108,6 +85,7 @@ namespace MemoryGame
             }
         }
 
+        // Delete if no use -- probably works though
         public void showPanelsNoHide(Panel[] panels) {
             hideAllMainPanels();
             foreach (Panel panel in panels) {
@@ -115,20 +93,19 @@ namespace MemoryGame
             }
         }
 
-        /* HELPER FUNCTIONS END */
+    /* HELPER FUNCTIONS END */
 
 
-        /* FUNCTIONS FOR EACH MAIN PANEL TO GET VISIBLE */
+    /* FUNCTIONS FOR EACH MAIN PANEL TO GET VISIBLE */
+        /* Also updates game state between single, multi and vsComp */
         private void vsPlayerBtn_Click(object sender, EventArgs e) {
             game.setGameState(Memory.State.multiplayer);
             showPanel(vsPlayerPanel);
         }
-
         private void vsComputerBtn_Click(object sender, EventArgs e) {
             game.setGameState(Memory.State.vsComputer);
             showPanel(vsComputerPanel);
         }
-
         private void vsSingleBtn_Click(object sender, EventArgs e) {
             game.setGameState(Memory.State.singleplayer);
             showPanel(vsSinglePanel);
@@ -136,12 +113,10 @@ namespace MemoryGame
         private void statisticsBtn_Click(object sender, EventArgs e) {
             showPanel(statisticsPanel);
         }
-
         private void helpBtn_Click(object sender, EventArgs e) {
             showPanel(helpPanel);
         }
-
-        /* FUNCTIONS FOR MAKING MAIN PANEL VISIBLE END */
+    /* FUNCTIONS FOR MAKING MAIN PANEL VISIBLE END */
 
         private void statisticsPanel_Paint(object sender, PaintEventArgs e) {
 
@@ -170,8 +145,8 @@ namespace MemoryGame
         }
 
         private void gridSizes_SelectedIndexChanged(object sender, EventArgs e) {
-            var size = (Memory.Gridsize)Enum.Parse(typeof(Memory.Gridsize), gridSizes.SelectedItem.ToString());
-            game.setGridsize(size);
+            var size = (Memory.GridSize)Enum.Parse(typeof(Memory.GridSize), gridSizes.SelectedItem.ToString());
+            game.setGridSize(size);
         }
 
 
@@ -228,6 +203,7 @@ namespace MemoryGame
         private void newUserBtn2_Click(object sender, EventArgs e) {
             Player player2 = new Player();
             player2.SetPlayerInfo(newUser2Name.Text, 0, 0, 0, 0);
+            game.setMemoryPlayer2(player2);
         }
 
         private void existingUserComboBox2_SelectedIndexChanged(object sender, EventArgs e) {
@@ -257,19 +233,90 @@ namespace MemoryGame
         }
 
         private void startBtn_Click(object sender, EventArgs e) {
-            MessageBox.Show("Ei toimi vielä :'(");
+            
+            System.Diagnostics.Debug.WriteLine(readyToPlay());
+
+            if (readyToPlay()) { 
             var f = new Form2(game);
             f.Owner = this;
             f.Show();
             this.Visible = false;
+            } else {
+                errorPanel.Visible = true;
+            }
         }
 
-        private void computerDifficulties_SelectedIndexChanged(object sender, EventArgs e) {
+        private void startBtn_MouseHover(object sender, EventArgs e) {
+        }
+
+            private void computerDifficulties_SelectedIndexChanged(object sender, EventArgs e) {
             var skill = (ComputerPlayer.Skillset)Enum.Parse(typeof(ComputerPlayer.Skillset), computerDifficulties.SelectedItem.ToString());
             ComputerPlayer player = new ComputerPlayer(skill);
             game.setComputerPlayer(player);
         }
 
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e) {
 
+        }
+
+
+        //Keeps track of fields which are required for each state and enables play button if requirements are satisfied
+        private Boolean readyToPlay() {
+            Player player = game.getMemoryPlayer1();
+            Memory.GridSize size = game.getGridSize();
+            Memory.DeckSelection deck = game.getDeckSelection();
+            Memory.State state = game.getGameState();
+
+            if (player == null) {
+                errorTextBox.Text = "Error with player1";
+                return false;
+            }
+
+            // Check if deck is selected or not, gridsize have default value, and computer player is constructed using skillset, so not checking for those
+            if (deck == Memory.DeckSelection.none) {
+                errorTextBox.Text = "Choose deck";
+                return false;
+            } 
+
+
+            switch (game.getGameState()) {
+                case Memory.State.singleplayer: { 
+                    return true;
+                }
+                case Memory.State.multiplayer: { 
+                    Player player2 = game.getMemoryPlayer2();
+                    if (player2 == null) {
+                        errorTextBox.Text = "Error with player2";
+                        return false;
+                    }
+                    return true;
+                }
+                case Memory.State.vsComputer:
+                    Player compPlayer = game.getComputerPlayer();
+                    if (compPlayer == null) { 
+                        errorTextBox.Text = "Select computer difficulty";
+                        return false;
+                    }   
+                    return true;
+
+                default:
+                    return false;
+
+            }
+        }
+
+
+        /* ERROR PANEL */
+        private void errorPanel_Paint(object sender, PaintEventArgs e) {
+
+        }
+
+        private void errorPicture_Click(object sender, EventArgs e) {
+
+        }
+
+
+
+        /* ERROR PANEL END */
     }
 }

@@ -22,17 +22,41 @@ namespace MemoryGame {
         }
 
         private void button2_Click(object sender, EventArgs e) {
-            var name = textBox2.Text;
-            System.Diagnostics.Debug.WriteLine(name);
-            System.Diagnostics.Debug.WriteLine(game.getGameState());
-            //System.Diagnostics.Debug.WriteLine(game.getComputerPlayer().difficulty);
-            System.Diagnostics.Debug.WriteLine(game.getGridSize());
-            System.Diagnostics.Debug.WriteLine(game.getDeckSelection());
+            Player player = game.getMemoryPlayer1();
 
+            switch (game.getGameState()) {
+                case Memory.State.singleplayer:
+                System.Diagnostics.Debug.WriteLine(player.name);
+                System.Diagnostics.Debug.WriteLine(player.gamesPlayed);
+                System.Diagnostics.Debug.WriteLine(game.getDeckSelection());
+                System.Diagnostics.Debug.WriteLine(game.getGridSize());
+                break;
+                case Memory.State.multiplayer:
+                Player player2 = game.getMemoryPlayer2();
+                System.Diagnostics.Debug.WriteLine(player.name);
+                System.Diagnostics.Debug.WriteLine(player.gamesPlayed);
+                System.Diagnostics.Debug.WriteLine(game.getDeckSelection());
+                System.Diagnostics.Debug.WriteLine(game.getGridSize());
 
-
+                System.Diagnostics.Debug.WriteLine(player2.name);
+                System.Diagnostics.Debug.WriteLine(player2.gamesPlayed);
+                System.Diagnostics.Debug.WriteLine(game.getDeckSelection());
+                System.Diagnostics.Debug.WriteLine(game.getGridSize());
+                break;
+                case Memory.State.vsComputer:
+                ComputerPlayer ComPlayer = game.getComputerPlayer();
+                System.Diagnostics.Debug.WriteLine(ComPlayer.name);
+                System.Diagnostics.Debug.WriteLine(ComPlayer.gamesPlayed);
+                System.Diagnostics.Debug.WriteLine(ComPlayer.difficulty);
+                System.Diagnostics.Debug.WriteLine(game.getDeckSelection());
+                System.Diagnostics.Debug.WriteLine(game.getGridSize());
+                break;
+                default: 
+                    break;
+            }
 
         }
+
 
         private void textBox1_TextChanged(object sender, EventArgs e) {
 
@@ -45,21 +69,11 @@ namespace MemoryGame {
         private void Form2_Load(object sender, EventArgs e) {
 
         }
-        public static void InitialiseFolder() {
-            string path = Environment.ExpandEnvironmentVariables("%TEMP%");
-            Directory.CreateDirectory(path);
-            Boolean file = File.Exists(path + "\\memorygame.txt");
-            try {
-                File.Create(path + "\\memorygame.txt");
-            }
-            catch {
-                System.Diagnostics.Debug.WriteLine("Already exist");
-            }
-            System.Diagnostics.Debug.WriteLine(file);
 
-        }
         private void button3_Click(object sender, EventArgs e) {
-            InitialiseFolder();
+            var f = new Form1();
+            f.Show();
+            this.Visible = false;
         }
     }
 }

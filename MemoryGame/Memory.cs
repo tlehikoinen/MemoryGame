@@ -5,7 +5,15 @@ using System.Text;
 
 namespace MemoryGame {
 
-    public class Memory : Player {
+    public class Memory {
+
+        Player player1;
+        Player player2;
+        ComputerPlayer player3;
+        State gameState = State.none;
+        DeckSelection deckSelection = DeckSelection.none;
+        GridSize gridSize = GridSize.small;
+
         public Memory() {
             InitialiseFolder();
         }
@@ -25,29 +33,23 @@ namespace MemoryGame {
         }
 
         public enum State {
+            none,
             singleplayer,
             multiplayer,
             vsComputer
         }
 
         public enum DeckSelection {
+            none,
             cats,
             characters
         }
 
-        public enum Gridsize {
+        public enum GridSize {
             small,
             medium,
             big
         }
-
-        Player player1;
-        Player player2;
-        ComputerPlayer player3;
-        State gameState = State.singleplayer;
-        DeckSelection deckSelection;
-        Gridsize gridSize = Gridsize.small;
-
 
         public void setGameState(State state) {
             this.gameState = state;
@@ -62,10 +64,10 @@ namespace MemoryGame {
         public DeckSelection getDeckSelection() {
             return this.deckSelection;
         }
-        public void setGridsize(Gridsize size) { 
+        public void setGridSize(GridSize size) { 
             this.gridSize = size;
         }
-        public Gridsize getGridSize() {
+        public GridSize getGridSize() {
             return this.gridSize;
         }
 
@@ -139,6 +141,10 @@ namespace MemoryGame {
 
         public string getComputerPlayerInfo() {
             return this.name;
+        }
+
+        public Skillset getComputerSkillset() {
+            return this.difficulty;
         }
 
 
