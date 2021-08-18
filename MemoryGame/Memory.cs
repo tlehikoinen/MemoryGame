@@ -6,7 +6,6 @@ using System.Globalization;
 using CsvHelper;
 
 namespace MemoryGame {
-
     public class Memory {
         private static string path = Environment.ExpandEnvironmentVariables("%TEMP%");
         private static string fileName = "memorygamedata.txt";
@@ -120,7 +119,6 @@ namespace MemoryGame {
             this.player3 = player;
             this.handler.addRow(this.player3.recordForm());
         }
-
         public Player getMemoryPlayer1() {
             return this.player1;
         }
@@ -130,7 +128,6 @@ namespace MemoryGame {
         public ComputerPlayer getComputerPlayer() {
             return this.player3;
         }
-
         public string getPath() {
             return Memory.path;
         }
@@ -143,12 +140,17 @@ namespace MemoryGame {
         public List<String> getExistingPlayerNames() {
             return this.existingPlayerNames;
         }
-
         public void setData() {
             this.playerData = handler.parseData();
             this.existingPlayerNames = handler.parseNames();
         }
-
+        public void updateData() {
+            var gamesPlayed = player1.gamesPlayed;
+            player1.gamesPlayed = gamesPlayed+1;
+            player1.guesses = player1.guesses + 10;
+            var data = player1.recordForm();
+            handler.updateRow(data);
+        }
         public void somethingNames() {
             handler.parseData();
         }
@@ -217,8 +219,6 @@ namespace MemoryGame {
         public Skillset getComputerSkillset() {
             return this.difficulty;
         }
-
-
     }
 
     public class FileHandler {
@@ -230,10 +230,6 @@ namespace MemoryGame {
 
         public string getData() {
             string read = File.ReadAllText(this.csvPath);
-            System.Diagnostics.Debug.WriteLine("okei");
-            System.Diagnostics.Debug.WriteLine(read);
-            System.Diagnostics.Debug.WriteLine("okei");
-
             return read;
         }
 
@@ -250,7 +246,41 @@ namespace MemoryGame {
             }
             if (!alreadyExists)
                 File.AppendAllLines(this.csvPath, new[] { data.ToString() });
+        }
 
+        public void updateRow(string data) {
+            
+            List<String[]> existingData = parseData();
+            List<String[]> updatedData = new List<String[]>();
+            string[] splitted = data.Split(",");
+
+            // Make updated data list
+            foreach (string[] item in existingData) {
+                if (item[0] == splitted[0]) {
+                    updatedData.Add(splitted);
+                } else {
+                    updatedData.Add(item);
+                }
+            }
+
+            // Empty the datafile and set header
+            File.WriteAllLines(this.csvPath, new[] { "Name, GamesPlayed, GamesWon, Guesses, CorrectGuesses" });
+
+            //Write updated data to file
+            foreach (string[] item in updatedData) {
+                File.AppendAllLines(this.csvPath, new[] { stringFormat(item).ToString() });
+            }
+        }
+
+        public string stringFormat(string[] data) {
+            string stringFormat = "";
+            for (int i = 0; i < data.Length; i++) {
+                stringFormat += data[i];
+                if(i != data.Length - 1) {
+                    stringFormat += ",";
+                }
+            }
+            return stringFormat;
         }
 
         public List<String[]> parseData() {
@@ -262,7 +292,6 @@ namespace MemoryGame {
             }
             return playerData;
         }
-
         public List<String> parseNames() {
             string[] lines = File.ReadAllLines(csvPath);
             List<string> playerNames = new List<string>();
@@ -272,13 +301,6 @@ namespace MemoryGame {
             }
             return playerNames;
         }
-
-
-
-
-
-
-
     }
 
 }

@@ -32,6 +32,15 @@ namespace MemoryGame
         }
 
     /* HELPER FUNCTIONS */
+
+        private Boolean nameAlreadyExists(string name) {
+            var data = game.getExistingPlayerNames();
+            foreach (string existingName in data) {
+                if (existingName == name)
+                    return true;
+            }
+            return false;
+        }
         private void openHomePage() {
             hideAllMainPanels();
             homePanel.Visible = true;
@@ -81,6 +90,27 @@ namespace MemoryGame
 
 
         }
+
+        // New user forms have button or error visible depending on textbox content
+        private void newUserTextBoxStateHandler(TextBox textBox, Button button, Label error) {
+            if (String.IsNullOrEmpty(textBox.Text)) {
+                button.Enabled = false;
+                return;
+            }
+            else {
+                button.Enabled = true;
+            }
+
+            if (nameAlreadyExists(textBox.Text)) {
+                button.Visible = false;
+                error.Visible = true;
+            }
+            else {
+                button.Visible = true;
+                error.Visible = false;
+            }
+        }
+
         public void hideAllMainPanels() { 
             vsPlayerPanel.Hide();
             vsComputerPanel.Hide();
@@ -189,8 +219,10 @@ namespace MemoryGame
 
         }
         private void newUser1Name_TextChanged(object sender, EventArgs e) {
-
+            newUserTextBoxStateHandler(newUser1Name, newUser1Btn, newUserExistsError1);
         }
+
+
         private void newUser1Btn_Click(object sender, EventArgs e) {
             Player player1 = new Player();
             player1.SetPlayerInfo(newUser1Name.Text, 0, 0, 0, 0);
@@ -223,7 +255,7 @@ namespace MemoryGame
         }
 
         private void newUser2Name_TextChanged(object sender, EventArgs e) {
-
+            newUserTextBoxStateHandler(newUser2Name, newUserBtn2, newUserExistsError2);
         }
 
         private void newUserBtn2_Click(object sender, EventArgs e) {
@@ -279,7 +311,7 @@ namespace MemoryGame
         private void startBtn_MouseHover(object sender, EventArgs e) {
         }
 
-            private void computerDifficulties_SelectedIndexChanged(object sender, EventArgs e) {
+        private void computerDifficulties_SelectedIndexChanged(object sender, EventArgs e) {
             var skill = (ComputerPlayer.Skillset)Enum.Parse(typeof(ComputerPlayer.Skillset), computerDifficulties.SelectedItem.ToString());
             ComputerPlayer player = new ComputerPlayer(skill);
             game.setComputerPlayer(player);
@@ -335,31 +367,5 @@ namespace MemoryGame
             }
         }
 
-
-        /* ERROR PANEL */
-        private void errorPanel_Paint(object sender, PaintEventArgs e) {
-
-        }
-
-        private void errorPicture_Click(object sender, EventArgs e) {
-
-        }
-
-        private void statisticsTextBox_TextChanged(object sender, EventArgs e) {
-
-        }
-
-        private void statisticsHeader_Click(object sender, EventArgs e) {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
-
-        }
-
-
-
-
-        /* ERROR PANEL END */
     }
 }
