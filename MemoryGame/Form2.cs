@@ -16,77 +16,88 @@ namespace MemoryGame {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e) {
-            var name = textBox1.Text;
-            System.Diagnostics.Debug.WriteLine(this.game.getMemoryPlayer1().name);
+        private void Form2_Load(object sender, EventArgs e) {
+            initialiseGrid();
         }
 
-        private void button2_Click(object sender, EventArgs e) {
-            Player player = game.getMemoryPlayer1();
+        private int gridSizeInNumber(Memory.GridSize size) {
+            switch ((Memory.GridSize)Enum.Parse(typeof(Memory.GridSize), size.ToString())) {
+                case Memory.GridSize.small: {
+                    return 4;
+                }
+                case Memory.GridSize.medium: {
+                    return 6;
+                }
+                case Memory.GridSize.big: {
+                    return 8;
+                }
+                default:
+                    return 0;
+            }
+        }
 
-            switch (game.getGameState()) {
-                case Memory.State.singleplayer:
-                System.Diagnostics.Debug.WriteLine(player.name);
-                System.Diagnostics.Debug.WriteLine(player.gamesPlayed);
-                System.Diagnostics.Debug.WriteLine(game.getDeckSelection());
-                System.Diagnostics.Debug.WriteLine(game.getGridSize());
-                break;
-                case Memory.State.multiplayer:
-                Player player2 = game.getMemoryPlayer2();
-                System.Diagnostics.Debug.WriteLine(player.name);
-                System.Diagnostics.Debug.WriteLine(player.gamesPlayed);
-                System.Diagnostics.Debug.WriteLine(game.getDeckSelection());
-                System.Diagnostics.Debug.WriteLine(game.getGridSize());
+        private void initialiseGrid() {
+            memoryGameGrid.ColumnCount = gridSizeInNumber(game.getGridSize());
+            memoryGameGrid.RowCount = gridSizeInNumber(game.getGridSize());
+            var grids = gridSizeInNumber(game.getGridSize());
+            var padding = 5;
+            var size = this.memoryGameGrid.Size.Width;
 
-                System.Diagnostics.Debug.WriteLine(player2.name);
-                System.Diagnostics.Debug.WriteLine(player2.gamesPlayed);
-                System.Diagnostics.Debug.WriteLine(game.getDeckSelection());
-                System.Diagnostics.Debug.WriteLine(game.getGridSize());
-                break;
-                case Memory.State.vsComputer:
-                ComputerPlayer ComPlayer = game.getComputerPlayer();
-                System.Diagnostics.Debug.WriteLine(ComPlayer.name);
-                System.Diagnostics.Debug.WriteLine(ComPlayer.gamesPlayed);
-                System.Diagnostics.Debug.WriteLine(ComPlayer.difficulty);
-                System.Diagnostics.Debug.WriteLine(game.getDeckSelection());
-                System.Diagnostics.Debug.WriteLine(game.getGridSize());
-                break;
-                default: 
-                    break;
+
+            var boxSize = ((size / grids) - padding);
+            var pictureSize = ((size / grids) - padding);
+
+            TableLayoutColumnStyleCollection colStyles = this.memoryGameGrid.ColumnStyles;
+            foreach (ColumnStyle style in colStyles) {
+                style.SizeType = SizeType.Absolute;
+                style.Width = boxSize;
+            }
+            TableLayoutRowStyleCollection rowStyles = this.memoryGameGrid.RowStyles;
+            foreach (RowStyle style in rowStyles) {
+                style.SizeType = SizeType.Absolute;
+                style.Height = boxSize;
             }
 
+            for (int i= 0; i < memoryGameGrid.ColumnCount; i++) {
+                for(int j = 0; j < memoryGameGrid.RowCount; j++) {
+                    Panel panel = new Panel {
+                        Size = new Size(pictureSize, pictureSize),
+                    };
+                    string rowPos = i + "," + j;
+                    panel.Click += memoryGamePanelClick;
+                    panel.Name = rowPos;
+                    panel.BorderStyle = BorderStyle.Fixed3D;
+                    memoryGameGrid.Controls.Add(panel, i, j);
+                }
+            }
         }
 
-
-        private void textBox1_TextChanged(object sender, EventArgs e) {
-
+        void memoryGamePanelClick(object sender, EventArgs e) {
+            Panel panel = sender as Panel;
+            if(panel.BackgroundImage == null) { 
+            panel.BackgroundImage = resizeImage(Image.FromFile("../../../Pictures/Game/1.png"), panel.Size);
+            } else {
+                panel.BackgroundImage = null;
+            }
+            System.Diagnostics.Debug.WriteLine(panel.Name);
         }
-
-        private void textBox2_TextChanged(object sender, EventArgs e) {
-
-        }
-
-        private void Form2_Load(object sender, EventArgs e) {
-
-        }
-
         private void button3_Click(object sender, EventArgs e) {
             var f = new Form1();
             f.Show();
             this.Visible = false;
         }
 
-        private void button4_Click(object sender, EventArgs e) {
-            System.Diagnostics.Debug.WriteLine("From button 4");
-            System.Diagnostics.Debug.WriteLine(game.getData());
+        private Image resizeImage(Image image, Size size) {
+            return (Image)(new Bitmap(image, size));
         }
 
-        private void button5_Click(object sender, EventArgs e) {
-            game.somethingNames();
-        }
 
         private void button6_Click(object sender, EventArgs e) {
             game.updateData();
+        }
+
+        private void memoryGameGrid_Paint(object sender, PaintEventArgs e) {
+
         }
     }
 }

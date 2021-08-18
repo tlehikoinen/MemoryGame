@@ -185,7 +185,6 @@ namespace MemoryGame
             this.splitContainer1.Panel2.Controls.Add(this.vsComputerPanel);
             this.splitContainer1.Panel2.Controls.Add(this.helpPanel);
             this.splitContainer1.Panel2.Controls.Add(this.homePanel);
-            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
             this.splitContainer1.Size = new System.Drawing.Size(1212, 761);
             this.splitContainer1.SplitterDistance = 305;
             this.splitContainer1.TabIndex = 7;
@@ -322,7 +321,6 @@ namespace MemoryGame
             this.newUserPanel2.Size = new System.Drawing.Size(200, 100);
             this.newUserPanel2.TabIndex = 14;
             this.newUserPanel2.Visible = false;
-            this.newUserPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.newUserPanel2_Paint);
             // 
             // newUserExistsError2
             // 
@@ -397,7 +395,6 @@ namespace MemoryGame
             this.existingUserComboBox2.Name = "existingUserComboBox2";
             this.existingUserComboBox2.Size = new System.Drawing.Size(121, 27);
             this.existingUserComboBox2.TabIndex = 1;
-            this.existingUserComboBox2.SelectedIndexChanged += new System.EventHandler(this.existingUserComboBox2_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -424,7 +421,6 @@ namespace MemoryGame
             this.gameOptionPanel.Name = "gameOptionPanel";
             this.gameOptionPanel.Size = new System.Drawing.Size(351, 289);
             this.gameOptionPanel.TabIndex = 5;
-            this.gameOptionPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.gameOptionPanel_Paint);
             // 
             // label9
             // 
@@ -457,7 +453,6 @@ namespace MemoryGame
             this.startBtn.Text = "Play";
             this.startBtn.UseVisualStyleBackColor = true;
             this.startBtn.Click += new System.EventHandler(this.startBtn_Click);
-            this.startBtn.MouseHover += new System.EventHandler(this.startBtn_MouseHover);
             // 
             // dogsRadio
             // 
@@ -582,7 +577,6 @@ namespace MemoryGame
             this.newUserPanel1.Size = new System.Drawing.Size(200, 100);
             this.newUserPanel1.TabIndex = 7;
             this.newUserPanel1.Visible = false;
-            this.newUserPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.newUserPanel1_Paint);
             // 
             // newUser1Label
             // 
@@ -637,7 +631,6 @@ namespace MemoryGame
             this.existingUserPanel1.Size = new System.Drawing.Size(200, 100);
             this.existingUserPanel1.TabIndex = 8;
             this.existingUserPanel1.Visible = false;
-            this.existingUserPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.existingUserPanel1_Paint);
             // 
             // existingUserBtn1
             // 
@@ -658,7 +651,6 @@ namespace MemoryGame
             this.existingUserComboBox1.Name = "existingUserComboBox1";
             this.existingUserComboBox1.Size = new System.Drawing.Size(121, 27);
             this.existingUserComboBox1.TabIndex = 1;
-            this.existingUserComboBox1.SelectedIndexChanged += new System.EventHandler(this.existingUserComboBox1_SelectedIndexChanged);
             // 
             // existingUser1Label
             // 
@@ -679,7 +671,6 @@ namespace MemoryGame
             this.statisticsPanel.Name = "statisticsPanel";
             this.statisticsPanel.Size = new System.Drawing.Size(728, 545);
             this.statisticsPanel.TabIndex = 3;
-            this.statisticsPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.statisticsPanel_Paint);
             // 
             // statisticsHeader
             // 

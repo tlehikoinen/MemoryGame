@@ -172,14 +172,6 @@ namespace MemoryGame
         }
     /* FUNCTIONS FOR MAKING MAIN PANEL VISIBLE END */
 
-        private void statisticsPanel_Paint(object sender, PaintEventArgs e) {
-
-        }
-
-        private void gameOptionPanel_Paint(object sender, PaintEventArgs e) {
-
-        }
-
         private void catsRadioImage_Click(object sender, EventArgs e) {
             catsRadio.Checked = true;
         }
@@ -214,10 +206,6 @@ namespace MemoryGame
         private void existingUserRadioBtn1_CheckedChanged(object sender, EventArgs e) {
             toggleTwoPanels(existingUserPanel1, newUserPanel1);
         }
-
-        private void newUserPanel1_Paint(object sender, PaintEventArgs e) {
-
-        }
         private void newUser1Name_TextChanged(object sender, EventArgs e) {
             newUserTextBoxStateHandler(newUser1Name, newUser1Btn, newUserExistsError1);
         }
@@ -227,17 +215,6 @@ namespace MemoryGame
             Player player1 = new Player();
             player1.SetPlayerInfo(newUser1Name.Text, 0, 0, 0, 0);
             game.setMemoryPlayer1(player1);
-        }
-        private void existingUserPanel1_Paint(object sender, PaintEventArgs e) {
-
-        }
-
-
-
-
-        private void existingUserComboBox1_SelectedIndexChanged(object sender, EventArgs e) {
-
-
         }
 
         private void existingUserBtn1_Click(object sender, EventArgs e) {
@@ -250,10 +227,6 @@ namespace MemoryGame
 
         /* PLAYER2 PANEL */
 
-        private void newUserPanel2_Paint(object sender, PaintEventArgs e) {
-
-        }
-
         private void newUser2Name_TextChanged(object sender, EventArgs e) {
             newUserTextBoxStateHandler(newUser2Name, newUserBtn2, newUserExistsError2);
         }
@@ -263,17 +236,10 @@ namespace MemoryGame
             player2.SetPlayerInfo(newUser2Name.Text, 0, 0, 0, 0);
             game.setMemoryPlayer2(player2);
         }
-
-        private void existingUserComboBox2_SelectedIndexChanged(object sender, EventArgs e) {
-
-        }
         private void existingUserBtn2_Click(object sender, EventArgs e) {
             string name = existingUserComboBox2.Text;
             game.setExistingMemoryPlayer(name, 2);
         }
-
-
-
         private void newUserRadioBtn2_CheckedChanged(object sender, EventArgs e) {
             toggleTwoPanels(newUserPanel2, existingUserPanel2);
 
@@ -281,10 +247,7 @@ namespace MemoryGame
 
         private void existingUserRadioBtn2_CheckedChanged(object sender, EventArgs e) {
             toggleTwoPanels(existingUserPanel2, newUserPanel2);
-
         }
-
-
 
         /* PLAYER2 PANEL END */
 
@@ -307,20 +270,11 @@ namespace MemoryGame
                 errorPanel.Visible = true;
             }
         }
-
-        private void startBtn_MouseHover(object sender, EventArgs e) {
-        }
-
         private void computerDifficulties_SelectedIndexChanged(object sender, EventArgs e) {
             var skill = (ComputerPlayer.Skillset)Enum.Parse(typeof(ComputerPlayer.Skillset), computerDifficulties.SelectedItem.ToString());
             ComputerPlayer player = new ComputerPlayer(skill);
             game.setComputerPlayer(player);
         }
-
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e) {
-
-        }
-
 
         //Keeps track of fields which are required for each state and enables play button if requirements are satisfied
         private Boolean readyToPlay() {
