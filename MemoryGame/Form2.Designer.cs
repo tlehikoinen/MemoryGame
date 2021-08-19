@@ -206,9 +206,9 @@ namespace MemoryGame {
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.currentPlayerLabel);
             this.Controls.Add(this.button8);
-            this.Controls.Add(this.winnerPanelMP);
             this.Controls.Add(this.memoryGameGrid);
             this.Controls.Add(this.winnerPanelSP);
+            this.Controls.Add(this.winnerPanelMP);
             this.Name = "Form2";
             this.Text = "Form2";
             this.winnerPanelMP.ResumeLayout(false);

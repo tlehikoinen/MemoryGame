@@ -22,6 +22,8 @@ namespace MemoryGame {
         PlayerState player2 = new PlayerState(GameState.Players.player2);
         string player1Name;
         string player2Name;
+        List<Panel> panelList = new List<Panel>();
+        ComputerPlayerWisdom computerWisdom;
 
         public Form2(Memory game) {
             this.game = game;
@@ -30,6 +32,15 @@ namespace MemoryGame {
             initialiseState();
             randomiseAddresses();
             getImages(pictureFolderPath(game.getDeckSelection()));
+            if(game.getGameState() == Memory.State.vsComputer) {
+                initialiseComputer();
+            }
+        }
+
+        private void initialiseComputer() {
+            ComputerPlayerWisdom newWisdom = new ComputerPlayerWisdom(this.shuffledNumbers, game.getComputerPlayer().difficulty, panelList);
+            this.computerWisdom = newWisdom;
+            newWisdom.printInitialSkills();
         }
         private void Form2HideAll() {
             memoryGameGrid.Visible = false;
@@ -95,6 +106,7 @@ namespace MemoryGame {
             int player2Guesses = player2.getGuesses().correctGuesses;
             if (player1Guesses == player2Guesses) {
                 setEndGameScreenMultiplayer(true);
+                // NEEDS COMP PLAYER
                 UpdateData(gamePlayer1, gamePlayer2, true);
                 return;
             }
@@ -128,7 +140,8 @@ namespace MemoryGame {
             if (draw) {
                 game.updateData(player1, 1, 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
                 game.updateData(player2, 1, 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
-            } else {
+            }
+            else {
                 game.updateData(player1, 1, player1 == this.state.winningPlayerOrgForm ? 1 : 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
                 game.updateData(player2, 1, player2 == this.state.winningPlayerOrgForm ? 1 : 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
             }
@@ -143,7 +156,11 @@ namespace MemoryGame {
         private void setEndGameScreenMultiplayer(Boolean draw) {
             Form2HideAll();
             player1StatsLabel.Text = game.getMemoryPlayer1().name;
-            player2StatsLabel.Text = game.getMemoryPlayer2().name;
+            if (game.getGameState() == Memory.State.multiplayer) {
+                player2StatsLabel.Text = game.getMemoryPlayer2().name;
+            } else {
+                player2StatsLabel.Text = game.getComputerPlayer().name;
+            }
             player1StatsTextbox.Text = "Guesses : " + this.player1.getGuesses().guesses + "\r\n" + "Correct guesses : " + this.player1.getGuesses().correctGuesses;
             player2StatsTextbox.Text = "Guesses : " + this.player2.getGuesses().guesses + "\r\n" + "Correct guesses : " + this.player2.getGuesses().correctGuesses;
             if (!draw) {
@@ -156,9 +173,6 @@ namespace MemoryGame {
             winnerPanelMP.Visible = true;
         }
         /* END */
-
-
-
 
         // This function returns integer array presentation of shuffled cards
         private void randomiseAddresses() {
@@ -253,37 +267,66 @@ namespace MemoryGame {
                     panel.Click += memoryGamePanelClick;
                     panel.Name = sum.ToString();
                     panel.BorderStyle = BorderStyle.Fixed3D;
-                    memoryGameGrid.Controls.Add(panel, i, j);
+                    memoryGameGrid.Controls.Add(panel, i , j);
+                    panelList.Add(panel);
                     k++;
                 }
             }
         }
+        private void doComputerThings() {
+            computerWisdom.guessPictures();
+            //foreach (int number in shuffledNumbers) {
+            //    System.Diagnostics.Debug.WriteLine(number);
+            //}
+            //foreach (Panel panel in panelList) {
+            //    panel.BackgroundImage = resizeImage(Image.FromFile(pictureAddresses[shuffledNumbers[int.Parse(panel.Name)]]), panel.Size);
+            //}
+            //pictureAddresses[shuffledNumbers[int.Parse(panel.Name)]]
+
+        }
 
         private void initialiseState() {
-
+            Random rnd = new Random();
             var gridSize = gridSizeInNumber(game.getGridSize());
             int neededCards = gridSize.column * gridSize.row / 2;
             state.maximumCorrectGuesses = neededCards;
             player1Name = this.game.getMemoryPlayer1().name;
 
-            if (game.getGameState() == Memory.State.singleplayer) {
-                this.state.currentPlayer = GameState.Players.player1;
-                currentPlayerLabel.Text = game.getMemoryPlayer1().name;
-            }
-            else {
-                Random rnd = new Random();
-                player2Name = this.game.getMemoryPlayer2().name;
-                state.currentPlayer = rnd.Next(1, 50) % 2 == 1 ? GameState.Players.player1 : GameState.Players.player2;
-                currentPlayerLabel.Text = this.state.currentPlayer == GameState.Players.player1 ? player1Name : player2Name;
+            switch ((Memory.State)Enum.Parse(typeof(Memory.State), game.getGameState().ToString())) {
+                case (Memory.State.singleplayer): {
+                    this.state.currentPlayer = GameState.Players.player1;
+                    currentPlayerLabel.Text = game.getMemoryPlayer1().name;
+                    break;
+                }
+                case (Memory.State.multiplayer): {
+                    player2Name = this.game.getMemoryPlayer2().name;
+                    state.currentPlayer = rnd.Next(1, 50) % 2 == 1 ? GameState.Players.player1 : GameState.Players.player2;
+                    currentPlayerLabel.Text = this.state.currentPlayer == GameState.Players.player1 ? player1Name : player2Name;
+                    break;
+                }
+                case (Memory.State.vsComputer): {
+                    player2Name = this.game.getComputerPlayer().name;
+                    state.currentPlayer = rnd.Next(1, 50) % 2 == 1 ? GameState.Players.player1 : GameState.Players.player2;
+                    currentPlayerLabel.Text = this.state.currentPlayer == GameState.Players.player1 ? player1Name : player2Name;
+                    break;
+                }
             }
         }
         private void handleFirstClick(Panel panel) {
             firstClick.clickedPanel = panel;
             firstClick.pictureNumber = int.Parse(panel.Name);
+            if(game.getGameState() == Memory.State.vsComputer) {
+                computerWisdom.increaseWisdom(panel);
+                computerWisdom.printInitialSkills();
+            }
         }
         private void handleSecondClick(Panel panel) {
             secondClick.clickedPanel = panel;
             secondClick.pictureNumber = int.Parse(panel.Name);
+            if (game.getGameState() == Memory.State.vsComputer) {
+                computerWisdom.increaseWisdom(panel);
+                computerWisdom.printInitialSkills();
+            }
         }
 
         private Boolean secondClickEqualsFirst(Panel panel) {
@@ -297,6 +340,7 @@ namespace MemoryGame {
 
         void memoryGamePanelClick(object sender, EventArgs e) {
             Panel panel = sender as Panel;
+
             if (panel.BackgroundImage != null) {
                 return;
             }
@@ -322,19 +366,23 @@ namespace MemoryGame {
                         if (game.getGameState() != Memory.State.singleplayer) {
                             toggleCurrentPlayer();
                         }
+                        if (game.getGameState() == Memory.State.vsComputer) {
+                            doComputerThings();
+                        }
                     }
                     else {
+                        if (game.getGameState() == Memory.State.vsComputer) {
+                            computerWisdom.removeMatchedPair(firstClick.clickedPanel, secondClick.clickedPanel);
+                        }
                         updateCorrectGuess();
                     }
+                    
                     memoryGameGrid.Enabled = true;
                     this.click = 1;
-
-
                     break;
                 }
             }
         }
-
 
 
         private void exitButton_Click(object sender, EventArgs e) {
@@ -421,5 +469,85 @@ namespace MemoryGame {
     public class Guesses {
         public int guesses = 0;
         public int correctGuesses = 0;
+    }
+
+    public class ComputerWisdom {
+        public int number { get; set; }
+        public int knows { get; set; } = 0;
+        public int panelNumber { get; set; }
+        public ComputerWisdom(int number, int knows, int panelNumber) { 
+            this.number = number; 
+            this.knows = knows;
+            this.panelNumber = panelNumber;
+        }
+    }
+
+    public class ComputerPlayerWisdom {
+        List<ComputerWisdom> knowledge = new List<ComputerWisdom>();
+        ComputerPlayer.Skillset skill;
+
+        public ComputerPlayerWisdom(int[] shuffledNumbers, ComputerPlayer.Skillset skill, List<Panel> list) {
+            this.skill = skill;
+            setInitialSkills(shuffledNumbers, list);
+        }
+
+        private void setInitialSkills(int[] shuffledNumbers, List<Panel> list) {
+            int i = 0;
+            foreach (int number in shuffledNumbers) {
+                knowledge.Add(new ComputerWisdom(number, 0, int.Parse(list.ElementAt(i).Name)));
+                i++;
+            }
+        }
+
+        public void printInitialSkills() {
+            System.Diagnostics.Debug.WriteLine(this.skill);
+            foreach (ComputerWisdom wisdom in knowledge) {
+                System.Diagnostics.Debug.WriteLine(wisdom.knows + " " + wisdom.number + " " + wisdom.panelNumber);
+            }
+        }
+
+        // Wisdom scale 0 - 10
+        // Easy increases 0 - 3 - 6 - 9/10 - 10
+        // Medium increases 0 - 6 - 9/10 - 10
+        // hard increases 0 - 9/10 - 10
+        // On zero total random
+        // 3 all pictures around (what about corner, probably leave unhandled since it is easier for humans to learn corner positions as well)
+        // 6 cross pattern over picture
+        // 9 one of two
+        // Should it be taught only during its own guesses, this is played on same computer so its fair it learns from other player as well
+        public void increaseWisdom(Panel panel) {
+            int boxNumber = int.Parse(panel.Name);
+            System.Diagnostics.Debug.WriteLine(boxNumber);
+            switch ((ComputerPlayer.Skillset)Enum.Parse(typeof(ComputerPlayer.Skillset), this.skill.ToString())) {
+                case ComputerPlayer.Skillset.easy: {
+                    this.knowledge
+                           .Where(x => x.panelNumber == boxNumber)
+                           .ToList()
+                           .ForEach(x => { x.knows += 2; });
+                    break;
+                }
+                case ComputerPlayer.Skillset.medium: {
+                    this.knowledge.ElementAt(boxNumber).knows += 3;
+                    break;
+                }
+                case ComputerPlayer.Skillset.hard: {
+                    this.knowledge.ElementAt(boxNumber).knows += 5;
+                    break;
+                }
+            }
+        }
+
+        public void removeMatchedPair(Panel panel1, Panel panel2) {
+            this.knowledge.RemoveAll(kl => new[] { int.Parse(panel1.Name), int.Parse(panel2.Name) }.Contains(kl.panelNumber) );
+        }
+
+        public void guessPictures() {
+            System.Diagnostics.Debug.WriteLine("not yet");
+        }
+
+        private void teachComputer(int number1, int number) {
+
+        }
+
     }
 }
