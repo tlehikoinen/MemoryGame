@@ -87,8 +87,6 @@ namespace MemoryGame
             foreach (string[] item in data) {
                 dataGridView1.Rows.Add(item);
             }
-
-
         }
 
         // New user forms have button or error visible depending on textbox content
@@ -242,7 +240,6 @@ namespace MemoryGame
         }
         private void newUserRadioBtn2_CheckedChanged(object sender, EventArgs e) {
             toggleTwoPanels(newUserPanel2, existingUserPanel2);
-
         }
 
         private void existingUserRadioBtn2_CheckedChanged(object sender, EventArgs e) {
@@ -250,8 +247,6 @@ namespace MemoryGame
         }
 
         /* PLAYER2 PANEL END */
-
-
 
         private void logoPictureBox_Click(object sender, EventArgs e) {
             openHomePage();
@@ -293,7 +288,6 @@ namespace MemoryGame
                 errorTextBox.Text = "Choose deck";
                 return false;
             } 
-
 
             switch (game.getGameState()) {
                 case Memory.State.singleplayer: { 

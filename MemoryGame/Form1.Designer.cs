@@ -48,10 +48,10 @@ namespace MemoryGame
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.newUserPanel2 = new System.Windows.Forms.Panel();
-            this.newUserExistsError2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.newUserBtn2 = new System.Windows.Forms.Button();
             this.newUser2Name = new System.Windows.Forms.TextBox();
+            this.newUserExistsError2 = new System.Windows.Forms.Label();
             this.existingUserPanel2 = new System.Windows.Forms.Panel();
             this.existingUserBtn2 = new System.Windows.Forms.Button();
             this.existingUserComboBox2 = new System.Windows.Forms.ComboBox();
@@ -128,6 +128,7 @@ namespace MemoryGame
             // 
             // vsComputerBtn
             // 
+            this.vsComputerBtn.Enabled = false;
             this.vsComputerBtn.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.vsComputerBtn.Location = new System.Drawing.Point(12, 220);
             this.vsComputerBtn.Name = "vsComputerBtn";
@@ -177,14 +178,14 @@ namespace MemoryGame
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.errorPanel);
-            this.splitContainer1.Panel2.Controls.Add(this.vsPlayerPanel);
-            this.splitContainer1.Panel2.Controls.Add(this.gameOptionPanel);
-            this.splitContainer1.Panel2.Controls.Add(this.vsSinglePanel);
             this.splitContainer1.Panel2.Controls.Add(this.statisticsPanel);
             this.splitContainer1.Panel2.Controls.Add(this.vsComputerPanel);
             this.splitContainer1.Panel2.Controls.Add(this.helpPanel);
             this.splitContainer1.Panel2.Controls.Add(this.homePanel);
+            this.splitContainer1.Panel2.Controls.Add(this.errorPanel);
+            this.splitContainer1.Panel2.Controls.Add(this.vsPlayerPanel);
+            this.splitContainer1.Panel2.Controls.Add(this.gameOptionPanel);
+            this.splitContainer1.Panel2.Controls.Add(this.vsSinglePanel);
             this.splitContainer1.Size = new System.Drawing.Size(1212, 761);
             this.splitContainer1.SplitterDistance = 305;
             this.splitContainer1.TabIndex = 7;
@@ -322,18 +323,6 @@ namespace MemoryGame
             this.newUserPanel2.TabIndex = 14;
             this.newUserPanel2.Visible = false;
             // 
-            // newUserExistsError2
-            // 
-            this.newUserExistsError2.AutoSize = true;
-            this.newUserExistsError2.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.newUserExistsError2.ForeColor = System.Drawing.Color.IndianRed;
-            this.newUserExistsError2.Location = new System.Drawing.Point(43, 71);
-            this.newUserExistsError2.Name = "newUserExistsError2";
-            this.newUserExistsError2.Size = new System.Drawing.Size(137, 20);
-            this.newUserExistsError2.TabIndex = 19;
-            this.newUserExistsError2.Text = "Name already exist";
-            this.newUserExistsError2.Visible = false;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -364,6 +353,18 @@ namespace MemoryGame
             this.newUser2Name.Size = new System.Drawing.Size(100, 24);
             this.newUser2Name.TabIndex = 0;
             this.newUser2Name.TextChanged += new System.EventHandler(this.newUser2Name_TextChanged);
+            // 
+            // newUserExistsError2
+            // 
+            this.newUserExistsError2.AutoSize = true;
+            this.newUserExistsError2.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.newUserExistsError2.ForeColor = System.Drawing.Color.IndianRed;
+            this.newUserExistsError2.Location = new System.Drawing.Point(43, 71);
+            this.newUserExistsError2.Name = "newUserExistsError2";
+            this.newUserExistsError2.Size = new System.Drawing.Size(137, 20);
+            this.newUserExistsError2.TabIndex = 19;
+            this.newUserExistsError2.Text = "Name already exist";
+            this.newUserExistsError2.Visible = false;
             // 
             // existingUserPanel2
             // 
@@ -665,8 +666,8 @@ namespace MemoryGame
             // statisticsPanel
             // 
             this.statisticsPanel.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.statisticsPanel.Controls.Add(this.statisticsHeader);
             this.statisticsPanel.Controls.Add(this.dataGridView1);
+            this.statisticsPanel.Controls.Add(this.statisticsHeader);
             this.statisticsPanel.Location = new System.Drawing.Point(22, 12);
             this.statisticsPanel.Name = "statisticsPanel";
             this.statisticsPanel.Size = new System.Drawing.Size(728, 545);
