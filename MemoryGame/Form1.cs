@@ -13,7 +13,6 @@ using System.Windows.Forms;
 namespace MemoryGame {
     public partial class Form1 : Form {
         Memory game = new Memory();
-
         public Form1() {
             InitializeComponent();
             Memory game = new Memory();

@@ -20,6 +20,8 @@ namespace MemoryGame {
         GameState state = new GameState();
         PlayerState player1 = new PlayerState(GameState.Players.player1);
         PlayerState player2 = new PlayerState(GameState.Players.player2);
+        string player1Name;
+        string player2Name;
 
         public Form2(Memory game) {
             this.game = game;
@@ -33,15 +35,16 @@ namespace MemoryGame {
             memoryGameGrid.Visible = false;
             winnerPanelMP.Visible = false;
             winnerPanelSP.Visible = false;
+            currentPlayerLabel.Visible = false;
         }
         private void toggleCurrentPlayer() {
             switch ((GameState.Players)Enum.Parse(typeof(GameState.Players), state.currentPlayer.ToString())) {
                 case GameState.Players.player1:
-                currentPlayerLabel.Text = "player2";
+                currentPlayerLabel.Text = player2Name;
                 state.currentPlayer = GameState.Players.player2;
                 break;
                 case GameState.Players.player2:
-                currentPlayerLabel.Text = "player1";
+                currentPlayerLabel.Text = player1Name;
                 state.currentPlayer = GameState.Players.player1;
                 break;
             }
@@ -134,20 +137,21 @@ namespace MemoryGame {
         /* END GAME PANELS */
         private void setEndGameScreenSinglePlayer() {
             Form2HideAll();
+            winnerPanelTextBox.Text = "Guesses : " + this.player1.getGuesses().guesses + "\r\n" + "Correct guesses : " + this.player1.getGuesses().correctGuesses;
             winnerPanelSP.Visible = true;
         }
         private void setEndGameScreenMultiplayer(Boolean draw) {
             Form2HideAll();
+            player1StatsLabel.Text = game.getMemoryPlayer1().name;
+            player2StatsLabel.Text = game.getMemoryPlayer2().name;
+            player1StatsTextbox.Text = "Guesses : " + this.player1.getGuesses().guesses + "\r\n" + "Correct guesses : " + this.player1.getGuesses().correctGuesses;
+            player2StatsTextbox.Text = "Guesses : " + this.player2.getGuesses().guesses + "\r\n" + "Correct guesses : " + this.player2.getGuesses().correctGuesses;
             if (!draw) {
                 winnerTextBox.Text = this.state.winningPlayerOrgForm.name;
-                player1StatsTextbox.Text = "okei";
-                player2StatsTextbox.Text = this.state.winningPlayerOrgForm.guesses.ToString();
             }
             else {
                 winnerLabel.Text = "Draw";
                 winnerTextBox.Visible = false;
-                player1StatsTextbox.Text = "draw";
-                player2StatsTextbox.Text = "draw";
             }
             winnerPanelMP.Visible = true;
         }
@@ -225,8 +229,6 @@ namespace MemoryGame {
             var grids = memoryGameGrid.ColumnCount;
             var padding = 5;
             var size = this.memoryGameGrid.Size.Width;
-
-
             var boxSize = ((size / grids) - padding);
             var pictureSize = ((size / grids) - padding);
 
@@ -258,21 +260,21 @@ namespace MemoryGame {
         }
 
         private void initialiseState() {
+
             var gridSize = gridSizeInNumber(game.getGridSize());
             int neededCards = gridSize.column * gridSize.row / 2;
             state.maximumCorrectGuesses = neededCards;
+            player1Name = this.game.getMemoryPlayer1().name;
 
             if (game.getGameState() == Memory.State.singleplayer) {
                 this.state.currentPlayer = GameState.Players.player1;
-                currentPlayerLabel.Text = "Player1";
-
+                currentPlayerLabel.Text = game.getMemoryPlayer1().name;
             }
             else {
                 Random rnd = new Random();
+                player2Name = this.game.getMemoryPlayer2().name;
                 state.currentPlayer = rnd.Next(1, 50) % 2 == 1 ? GameState.Players.player1 : GameState.Players.player2;
-                System.Diagnostics.Debug.WriteLine(this.state.currentPlayer);
-                System.Diagnostics.Debug.WriteLine(this.state.currentPlayer == GameState.Players.player1);
-                currentPlayerLabel.Text = this.state.currentPlayer == GameState.Players.player1 ? "player1" : "player2";
+                currentPlayerLabel.Text = this.state.currentPlayer == GameState.Players.player1 ? player1Name : player2Name;
             }
         }
         private void handleFirstClick(Panel panel) {
@@ -294,7 +296,6 @@ namespace MemoryGame {
         }
 
         void memoryGamePanelClick(object sender, EventArgs e) {
-            Random rnd = new Random();
             Panel panel = sender as Panel;
             if (panel.BackgroundImage != null) {
                 return;
@@ -327,10 +328,14 @@ namespace MemoryGame {
                     }
                     memoryGameGrid.Enabled = true;
                     this.click = 1;
+
+
                     break;
                 }
             }
         }
+
+
 
         private void exitButton_Click(object sender, EventArgs e) {
             var f = new Form1();

@@ -184,8 +184,8 @@ namespace MemoryGame {
 
     public class ComputerPlayer : Player {
 
-        string[] adjectives = { "Furious", "Soft", "Unaccountable", "Zany", "Moldy", "Mountainous", "Flakyubiquitous", "Utter" };
-        string[] names = { "Horn", "Copper", "Acoustics", "Servant", "Company", "Lumber", "Crime", "Station", "Story", "Bushes", "Government", "Back" };
+        private string[] adjectives = { "Furious", "Soft", "Unaccountable", "Zany", "Moldy", "Mountainous", "Flakyubiquitous", "Utter" };
+        private string[] names = { "Horn", "Copper", "Acoustics", "Servant", "Company", "Lumber", "Crime", "Station", "Story", "Bushes", "Government", "Back" };
 
         public string formName() {
             string name = "";
