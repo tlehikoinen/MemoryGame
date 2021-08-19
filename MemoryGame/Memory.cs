@@ -109,7 +109,6 @@ namespace MemoryGame {
                 }
             }
         }
-
         public void setMemoryPlayer2(Player player) {
             this.player2 = player;
             this.handler.addRow(this.player2.recordForm());
@@ -144,11 +143,9 @@ namespace MemoryGame {
             this.playerData = handler.parseData();
             this.existingPlayerNames = handler.parseNames();
         }
-        public void updateData() {
-            var gamesPlayed = player1.gamesPlayed;
-            player1.gamesPlayed = gamesPlayed+1;
-            player1.guesses = player1.guesses + 10;
-            var data = player1.recordForm();
+        public void updateData(Player player, int gamesPlayed, int gamesWon, int guesses, int correctGuesses) {
+            player.UpdatePlayerInfo(gamesPlayed, gamesWon, guesses, correctGuesses);
+            var data = player.recordForm();
             handler.updateRow(data);
         }
         public void somethingNames() {
@@ -158,10 +155,10 @@ namespace MemoryGame {
     }
     public class Player {
         public string name { get; set; }
-        public int gamesPlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int guesses { get; set; }
-        public int correctGuesses { get; set; }
+        public int gamesPlayed { get; set; } = 0;
+        public int gamesWon { get; set; } = 0;
+        public int guesses { get; set; } = 0;
+        public int correctGuesses { get; set; } = 0;
 
         public Player() {
         }
@@ -172,6 +169,13 @@ namespace MemoryGame {
             this.gamesWon = gamesWon;
             this.guesses = guesses;
             this.correctGuesses = correctGuesses;
+        }
+        public void UpdatePlayerInfo(int gamesPlayed, int gamesWon, int guesses, int correctGuesses) {
+            System.Diagnostics.Debug.WriteLine("SELLASTA" + gamesPlayed + " " + gamesWon + " " + guesses + " " + correctGuesses);
+            this.gamesPlayed += gamesPlayed;
+            this.gamesWon += gamesWon;
+            this.guesses += guesses;
+            this.correctGuesses += correctGuesses;
         }
 
         public string recordForm() {

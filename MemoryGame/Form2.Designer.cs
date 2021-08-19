@@ -24,122 +24,194 @@ namespace MemoryGame {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.memoryGameGrid = new System.Windows.Forms.TableLayoutPanel();
+            this.button8 = new System.Windows.Forms.Button();
+            this.currentPlayerLabel = new System.Windows.Forms.Label();
+            this.winnerPanelMP = new System.Windows.Forms.Panel();
+            this.winnerTextBox = new System.Windows.Forms.TextBox();
+            this.winnerLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.player2StatsTextbox = new System.Windows.Forms.TextBox();
+            this.player1StatsTextbox = new System.Windows.Forms.TextBox();
+            this.winnerPanelTextBox = new System.Windows.Forms.TextBox();
+            this.winnerPanelSP = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.winnerPanelMP.SuspendLayout();
+            this.winnerPanelSP.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(117, 75);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(128, 93);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(299, 75);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(110, 93);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(121, 177);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(114, 23);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(297, 180);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(111, 23);
-            this.textBox2.TabIndex = 3;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(472, 106);
+            this.button3.Location = new System.Drawing.Point(673, 72);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 4;
-            this.button3.Text = "button3";
+            this.button3.Text = "exit";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // memoryGameGrid
             // 
-            this.button4.Location = new System.Drawing.Point(490, 145);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.memoryGameGrid.ColumnCount = 2;
+            this.memoryGameGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.83333F));
+            this.memoryGameGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.16667F));
+            this.memoryGameGrid.Location = new System.Drawing.Point(28, 12);
+            this.memoryGameGrid.Name = "memoryGameGrid";
+            this.memoryGameGrid.RowCount = 2;
+            this.memoryGameGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.16667F));
+            this.memoryGameGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.83333F));
+            this.memoryGameGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.memoryGameGrid.Size = new System.Drawing.Size(600, 600);
+            this.memoryGameGrid.TabIndex = 8;
             // 
-            // button5
+            // button8
             // 
-            this.button5.Location = new System.Drawing.Point(515, 245);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button8.Location = new System.Drawing.Point(673, 218);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 10;
+            this.button8.Text = "button8";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
-            // button6
+            // currentPlayerLabel
             // 
-            this.button6.Location = new System.Drawing.Point(164, 265);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 7;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.currentPlayerLabel.AutoSize = true;
+            this.currentPlayerLabel.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.currentPlayerLabel.Location = new System.Drawing.Point(308, 633);
+            this.currentPlayerLabel.Name = "currentPlayerLabel";
+            this.currentPlayerLabel.Size = new System.Drawing.Size(46, 20);
+            this.currentPlayerLabel.TabIndex = 12;
+            this.currentPlayerLabel.Text = "label1";
+            // 
+            // winnerPanelMP
+            // 
+            this.winnerPanelMP.Controls.Add(this.winnerTextBox);
+            this.winnerPanelMP.Controls.Add(this.winnerLabel);
+            this.winnerPanelMP.Controls.Add(this.label1);
+            this.winnerPanelMP.Controls.Add(this.player2StatsTextbox);
+            this.winnerPanelMP.Controls.Add(this.player1StatsTextbox);
+            this.winnerPanelMP.Location = new System.Drawing.Point(12, 12);
+            this.winnerPanelMP.Name = "winnerPanelMP";
+            this.winnerPanelMP.Size = new System.Drawing.Size(635, 600);
+            this.winnerPanelMP.TabIndex = 13;
+            this.winnerPanelMP.Visible = false;
+            // 
+            // winnerTextBox
+            // 
+            this.winnerTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.winnerTextBox.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.winnerTextBox.Location = new System.Drawing.Point(254, 327);
+            this.winnerTextBox.Name = "winnerTextBox";
+            this.winnerTextBox.ReadOnly = true;
+            this.winnerTextBox.Size = new System.Drawing.Size(100, 17);
+            this.winnerTextBox.TabIndex = 5;
+            // 
+            // winnerLabel
+            // 
+            this.winnerLabel.AutoSize = true;
+            this.winnerLabel.Font = new System.Drawing.Font("Sitka Text", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.winnerLabel.Location = new System.Drawing.Point(242, 277);
+            this.winnerLabel.Name = "winnerLabel";
+            this.winnerLabel.Size = new System.Drawing.Size(131, 47);
+            this.winnerLabel.TabIndex = 4;
+            this.winnerLabel.Text = "Winner";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Sitka Text", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(226, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(186, 47);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Game Over";
+            // 
+            // player2StatsTextbox
+            // 
+            this.player2StatsTextbox.BackColor = System.Drawing.SystemColors.Window;
+            this.player2StatsTextbox.Location = new System.Drawing.Point(371, 95);
+            this.player2StatsTextbox.Multiline = true;
+            this.player2StatsTextbox.Name = "player2StatsTextbox";
+            this.player2StatsTextbox.ReadOnly = true;
+            this.player2StatsTextbox.Size = new System.Drawing.Size(214, 168);
+            this.player2StatsTextbox.TabIndex = 1;
+            // 
+            // player1StatsTextbox
+            // 
+            this.player1StatsTextbox.Location = new System.Drawing.Point(49, 95);
+            this.player1StatsTextbox.Multiline = true;
+            this.player1StatsTextbox.Name = "player1StatsTextbox";
+            this.player1StatsTextbox.Size = new System.Drawing.Size(214, 168);
+            this.player1StatsTextbox.TabIndex = 0;
+            // 
+            // winnerPanelTextBox
+            // 
+            this.winnerPanelTextBox.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.winnerPanelTextBox.Location = new System.Drawing.Point(190, 231);
+            this.winnerPanelTextBox.Multiline = true;
+            this.winnerPanelTextBox.Name = "winnerPanelTextBox";
+            this.winnerPanelTextBox.ReadOnly = true;
+            this.winnerPanelTextBox.Size = new System.Drawing.Size(239, 163);
+            this.winnerPanelTextBox.TabIndex = 0;
+            // 
+            // winnerPanelSP
+            // 
+            this.winnerPanelSP.Controls.Add(this.label2);
+            this.winnerPanelSP.Controls.Add(this.winnerPanelTextBox);
+            this.winnerPanelSP.Font = new System.Drawing.Font("Sitka Text", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.winnerPanelSP.Location = new System.Drawing.Point(28, 9);
+            this.winnerPanelSP.Name = "winnerPanelSP";
+            this.winnerPanelSP.Size = new System.Drawing.Size(600, 583);
+            this.winnerPanelSP.TabIndex = 14;
+            this.winnerPanelSP.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(228, 168);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(164, 47);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Congrats!";
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.ClientSize = new System.Drawing.Size(783, 662);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.currentPlayerLabel);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.winnerPanelSP);
+            this.Controls.Add(this.winnerPanelMP);
+            this.Controls.Add(this.memoryGameGrid);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
+            this.winnerPanelMP.ResumeLayout(false);
+            this.winnerPanelMP.PerformLayout();
+            this.winnerPanelSP.ResumeLayout(false);
+            this.winnerPanelSP.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TableLayoutPanel memoryGameGrid;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label currentPlayerLabel;
+        private System.Windows.Forms.Panel winnerPanelMP;
+        private System.Windows.Forms.TextBox winnerTextBox;
+        private System.Windows.Forms.Label winnerLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox player2StatsTextbox;
+        private System.Windows.Forms.TextBox player1StatsTextbox;
+        private System.Windows.Forms.Panel winnerPanelSP;
+        private System.Windows.Forms.TextBox winnerPanelTextBox;
+        private System.Windows.Forms.Label label2;
     }
 }
