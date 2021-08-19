@@ -29,7 +29,6 @@ namespace MemoryGame
         [STAThread]
         static void Main()
         {
-            var game = new Memory();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

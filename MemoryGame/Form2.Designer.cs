@@ -24,7 +24,7 @@ namespace MemoryGame {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.button3 = new System.Windows.Forms.Button();
+            this.exitButton = new System.Windows.Forms.Button();
             this.memoryGameGrid = new System.Windows.Forms.TableLayoutPanel();
             this.button8 = new System.Windows.Forms.Button();
             this.currentPlayerLabel = new System.Windows.Forms.Label();
@@ -41,15 +41,15 @@ namespace MemoryGame {
             this.winnerPanelSP.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button3
+            // exitButton
             // 
-            this.button3.Location = new System.Drawing.Point(673, 72);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "exit";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.exitButton.Location = new System.Drawing.Point(673, 72);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(75, 23);
+            this.exitButton.TabIndex = 4;
+            this.exitButton.Text = "exit";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // memoryGameGrid
             // 
@@ -181,7 +181,7 @@ namespace MemoryGame {
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 662);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.currentPlayerLabel);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.winnerPanelSP);
@@ -189,7 +189,6 @@ namespace MemoryGame {
             this.Controls.Add(this.memoryGameGrid);
             this.Name = "Form2";
             this.Text = "Form2";
-            this.Load += new System.EventHandler(this.Form2_Load);
             this.winnerPanelMP.ResumeLayout(false);
             this.winnerPanelMP.PerformLayout();
             this.winnerPanelSP.ResumeLayout(false);
@@ -200,7 +199,7 @@ namespace MemoryGame {
         }
 
         #endregion
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.TableLayoutPanel memoryGameGrid;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label currentPlayerLabel;

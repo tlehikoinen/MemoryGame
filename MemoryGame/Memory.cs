@@ -91,7 +91,6 @@ namespace MemoryGame {
 
         public void setExistingMemoryPlayer(string name, int boxNumber) {
             Player player = new Player();
-            System.Diagnostics.Debug.WriteLine(name);
             foreach(string[] item in playerData) {
                 if (item[0] == name) {
                     player.SetPlayerInfo(item[0], int.Parse(item[1]), int.Parse(item[2]), int.Parse(item[3]), int.Parse(item[4]));
@@ -171,7 +170,6 @@ namespace MemoryGame {
             this.correctGuesses = correctGuesses;
         }
         public void UpdatePlayerInfo(int gamesPlayed, int gamesWon, int guesses, int correctGuesses) {
-            System.Diagnostics.Debug.WriteLine("SELLASTA" + gamesPlayed + " " + gamesWon + " " + guesses + " " + correctGuesses);
             this.gamesPlayed += gamesPlayed;
             this.gamesWon += gamesWon;
             this.guesses += guesses;
@@ -182,8 +180,6 @@ namespace MemoryGame {
             return this.name + ',' + this.gamesPlayed + ',' + this.gamesWon + ',' + this.guesses + ',' + this.correctGuesses;
             //return playerData;
         }
-
-
     }
 
     public class ComputerPlayer : Player {
@@ -286,7 +282,6 @@ namespace MemoryGame {
             }
             return stringFormat;
         }
-
         public List<String[]> parseData() {
             string[] lines = File.ReadAllLines(csvPath);
             List<string[]> playerData = new List<string[]>();

@@ -10,17 +10,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace MemoryGame
-{
+namespace MemoryGame {
     public partial class Form1 : Form {
         Memory game = new Memory();
 
         public Form1() {
-            //this.game = game;
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e) {
             Memory game = new Memory();
             this.game = game;
             initialiseGridSizes();
@@ -31,7 +26,7 @@ namespace MemoryGame
             setExistingPlayers();
         }
 
-    /* HELPER FUNCTIONS */
+        /* HELPER FUNCTIONS */
 
         private Boolean nameAlreadyExists(string name) {
             var data = game.getExistingPlayerNames();
@@ -63,7 +58,7 @@ namespace MemoryGame
         private void setGameOptionImages() {
             logoPictureBox.Image = Image.FromFile("../../../Pictures/Game/logo.png");
             catsRadioImage.Image = Image.FromFile("../../../Pictures/Game/catRadio.png");
-            dogsRadioImage.Image = Image.FromFile("../../../Pictures/Game/marioRadio.png");
+            characterRadioImage.Image = Image.FromFile("../../../Pictures/Game/marioRadio.png");
             errorPicture.Image = Image.FromFile("../../../Pictures/Game/error.png");
         }
 
@@ -74,7 +69,6 @@ namespace MemoryGame
                 existingUserComboBox2.Items.Add(item);
             }
         }
-        
         private void setStatistics() {
             var data = game.getData();
             dataGridView1.ColumnCount = 5;
@@ -98,7 +92,6 @@ namespace MemoryGame
             else {
                 button.Enabled = true;
             }
-
             if (nameAlreadyExists(textBox.Text)) {
                 button.Visible = false;
                 error.Visible = true;
@@ -108,8 +101,7 @@ namespace MemoryGame
                 error.Visible = false;
             }
         }
-
-        public void hideAllMainPanels() { 
+        public void hideAllMainPanels() {
             vsPlayerPanel.Hide();
             vsComputerPanel.Hide();
             statisticsPanel.Hide();
@@ -119,7 +111,6 @@ namespace MemoryGame
             homePanel.Hide();
             errorPanel.Hide();
         }
-
         public void showGameOptionPanel() {
             gameOptionPanel.Visible = true;
         }
@@ -137,19 +128,9 @@ namespace MemoryGame
             }
         }
 
-        // Delete if no use -- probably works though
-        public void showPanelsNoHide(Panel[] panels) {
-            hideAllMainPanels();
-            foreach (Panel panel in panels) {
-                panel.Visible = true;
-            }
-        }
+        /* END */
 
-    /* HELPER FUNCTIONS END */
-
-
-    /* FUNCTIONS FOR EACH MAIN PANEL TO GET VISIBLE */
-        /* Also updates game state between single, multi and vsComp */
+        /* FUNCTIONS FOR EACH MAIN PANEL TO GET VISIBLE AND GAME MODE STATE CHANGES */
         private void vsPlayerBtn_Click(object sender, EventArgs e) {
             game.setGameState(Memory.State.multiplayer);
             showPanel(vsPlayerPanel);
@@ -168,35 +149,46 @@ namespace MemoryGame
         private void helpBtn_Click(object sender, EventArgs e) {
             showPanel(helpPanel);
         }
-    /* FUNCTIONS FOR MAKING MAIN PANEL VISIBLE END */
+        /* END */
 
+        /* EVENT HANDLERS FOR COMPONENTS */
         private void catsRadioImage_Click(object sender, EventArgs e) {
             catsRadio.Checked = true;
         }
-
-        private void dogsRadioImage_Click(object sender, EventArgs e) {
-            dogsRadio.Checked = true;
+        private void characterRadioImage_Click(object sender, EventArgs e) {
+            characterRadio.Checked = true;
         }
-
         private void catsRadio_CheckedChanged(object sender, EventArgs e) {
             var deck = (Memory.DeckSelection)Enum.Parse(typeof(Memory.DeckSelection), catsRadio.Text.ToString());
             game.setDeckSelection(deck);
         }
-
-        private void dogsRadio_CheckedChanged(object sender, EventArgs e) {
-            var deck = (Memory.DeckSelection)Enum.Parse(typeof(Memory.DeckSelection), dogsRadio.Text.ToString());
+        private void characterRadio_CheckedChanged(object sender, EventArgs e) {
+            var deck = (Memory.DeckSelection)Enum.Parse(typeof(Memory.DeckSelection), characterRadio.Text.ToString());
             game.setDeckSelection(deck);
         }
-
         private void gridSizes_SelectedIndexChanged(object sender, EventArgs e) {
             var size = (Memory.GridSize)Enum.Parse(typeof(Memory.GridSize), gridSizes.SelectedItem.ToString());
             game.setGridSize(size);
         }
 
+        private void logoPictureBox_Click(object sender, EventArgs e) {
+            openHomePage();
+        }
+        private void startBtn_Click(object sender, EventArgs e) {
+            if (readyToPlay()) {
+                var f = new Form2(game);
+                f.Owner = this;
+                f.Show();
+                this.Visible = false;
+            }
+            else {
+                errorPanel.Visible = true;
+            }
+        }
 
+        /* END */
 
         /* SINGLE PLAYER PANEL  */
-
         private void newUserRadioBtn1_CheckedChanged(object sender, EventArgs e) {
             toggleTwoPanels(newUserPanel1, existingUserPanel1);
         }
@@ -207,8 +199,6 @@ namespace MemoryGame
         private void newUser1Name_TextChanged(object sender, EventArgs e) {
             newUserTextBoxStateHandler(newUser1Name, newUser1Btn, newUserExistsError1);
         }
-
-
         private void newUser1Btn_Click(object sender, EventArgs e) {
             Player player1 = new Player();
             player1.SetPlayerInfo(newUser1Name.Text, 0, 0, 0, 0);
@@ -220,15 +210,12 @@ namespace MemoryGame
             game.setExistingMemoryPlayer(name, 1);
 
         }
-
-        /* SINGLE PLAYER PANEL END */
+        /* END */
 
         /* PLAYER2 PANEL */
-
         private void newUser2Name_TextChanged(object sender, EventArgs e) {
             newUserTextBoxStateHandler(newUser2Name, newUserBtn2, newUserExistsError2);
         }
-
         private void newUserBtn2_Click(object sender, EventArgs e) {
             Player player2 = new Player();
             player2.SetPlayerInfo(newUser2Name.Text, 0, 0, 0, 0);
@@ -245,31 +232,15 @@ namespace MemoryGame
         private void existingUserRadioBtn2_CheckedChanged(object sender, EventArgs e) {
             toggleTwoPanels(existingUserPanel2, newUserPanel2);
         }
+        /* END */
 
-        /* PLAYER2 PANEL END */
-
-        private void logoPictureBox_Click(object sender, EventArgs e) {
-            openHomePage();
-        }
-
-        private void startBtn_Click(object sender, EventArgs e) {
-            
-            System.Diagnostics.Debug.WriteLine(readyToPlay());
-
-            if (readyToPlay()) { 
-            var f = new Form2(game);
-            f.Owner = this;
-            f.Show();
-            this.Visible = false;
-            } else {
-                errorPanel.Visible = true;
-            }
-        }
+        /* COMPUTER PANEL */
         private void computerDifficulties_SelectedIndexChanged(object sender, EventArgs e) {
             var skill = (ComputerPlayer.Skillset)Enum.Parse(typeof(ComputerPlayer.Skillset), computerDifficulties.SelectedItem.ToString());
             ComputerPlayer player = new ComputerPlayer(skill);
             game.setComputerPlayer(player);
         }
+        /* END */
 
         //Keeps track of fields which are required for each state and enables play button if requirements are satisfied
         private Boolean readyToPlay() {
@@ -287,13 +258,13 @@ namespace MemoryGame
             if (deck == Memory.DeckSelection.none) {
                 errorTextBox.Text = "Choose deck";
                 return false;
-            } 
+            }
 
             switch (game.getGameState()) {
-                case Memory.State.singleplayer: { 
+                case Memory.State.singleplayer: {
                     return true;
                 }
-                case Memory.State.multiplayer: { 
+                case Memory.State.multiplayer: {
                     Player player2 = game.getMemoryPlayer2();
                     if (player2 == null) {
                         errorTextBox.Text = "Error with player2";
@@ -303,17 +274,16 @@ namespace MemoryGame
                 }
                 case Memory.State.vsComputer:
                     Player compPlayer = game.getComputerPlayer();
-                    if (compPlayer == null) { 
+                    if (compPlayer == null) {
                         errorTextBox.Text = "Select computer difficulty";
-                        return false;
-                    }   
-                    return true;
+                    return false;
+                }
+                return true;
 
                 default:
                     return false;
 
             }
         }
-
     }
 }

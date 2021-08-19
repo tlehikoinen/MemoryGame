@@ -21,13 +21,20 @@ namespace MemoryGame {
         PlayerState player1 = new PlayerState(GameState.Players.player1);
         PlayerState player2 = new PlayerState(GameState.Players.player2);
 
+        public Form2(Memory game) {
+            this.game = game;
+            InitializeComponent();
+            initialiseGrid();
+            initialiseState();
+            randomiseAddresses();
+            getImages(pictureFolderPath(game.getDeckSelection()));
+        }
         private void Form2HideAll() {
             memoryGameGrid.Visible = false;
             winnerPanelMP.Visible = false;
             winnerPanelSP.Visible = false;
         }
         private void toggleCurrentPlayer() {
-            System.Diagnostics.Debug.WriteLine("from toggle" + state.currentPlayer);
             switch ((GameState.Players)Enum.Parse(typeof(GameState.Players), state.currentPlayer.ToString())) {
                 case GameState.Players.player1:
                 currentPlayerLabel.Text = "player2";
@@ -70,7 +77,6 @@ namespace MemoryGame {
         }
         private void endGame() {
             checkAndSetWinner();
-            System.Diagnostics.Debug.WriteLine("se on loppu nyt");
             System.Diagnostics.Debug.WriteLine("Player1");
             System.Diagnostics.Debug.WriteLine(player1.getGuesses().guesses);
             System.Diagnostics.Debug.WriteLine(player1.getGuesses().correctGuesses);
@@ -95,17 +101,12 @@ namespace MemoryGame {
             else {
                 state.winningPlayer = this.player2;
             }
-
             switch ((Memory.State)Enum.Parse(typeof(Memory.State), game.getGameState().ToString())) {
                 case (Memory.State.singleplayer): {
-                    System.Diagnostics.Debug.WriteLine("se oli sellanen sinkku");
                     setEndGameScreenSinglePlayer();
                     break;
                 }
                 case (Memory.State.multiplayer): {
-
-
-                    System.Diagnostics.Debug.WriteLine("se oli sellanen multiplayer");
                     this.state.winningPlayerOrgForm = this.player1 == this.state.winningPlayer ? gamePlayer1 : gamePlayer2;
                     setEndGameScreenMultiplayer(false);
                     UpdateData(gamePlayer1, gamePlayer2, false);
@@ -127,12 +128,10 @@ namespace MemoryGame {
             } else {
                 game.updateData(player1, 1, player1 == this.state.winningPlayerOrgForm ? 1 : 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
                 game.updateData(player2, 1, player2 == this.state.winningPlayerOrgForm ? 1 : 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
-                //player1.UpdatePlayerInfo(1, player1 == this.state.winningPlayerOrgForm ? 1 : 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
-                //player2.UpdatePlayerInfo(1, player2 == this.state.winningPlayerOrgForm ? 1 : 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
             }
-
         }
 
+        /* END GAME PANELS */
         private void setEndGameScreenSinglePlayer() {
             Form2HideAll();
             winnerPanelSP.Visible = true;
@@ -140,7 +139,6 @@ namespace MemoryGame {
         private void setEndGameScreenMultiplayer(Boolean draw) {
             Form2HideAll();
             if (!draw) {
-                System.Diagnostics.Debug.WriteLine(this.state.winningPlayerOrgForm.name);
                 winnerTextBox.Text = this.state.winningPlayerOrgForm.name;
                 player1StatsTextbox.Text = "okei";
                 player2StatsTextbox.Text = this.state.winningPlayerOrgForm.guesses.ToString();
@@ -153,17 +151,9 @@ namespace MemoryGame {
             }
             winnerPanelMP.Visible = true;
         }
-        public Form2(Memory game) {
-            this.game = game;
-            InitializeComponent();
+        /* END */
 
-        }
-        private void Form2_Load(object sender, EventArgs e) {
-            initialiseGrid();
-            initialiseState();
-            randomiseAddresses();
-            getImages(pictureFolderPath(game.getDeckSelection()));
-        }
+
 
 
         // This function returns integer array presentation of shuffled cards
@@ -194,8 +184,6 @@ namespace MemoryGame {
             newCards = newCards.OrderBy(x => rnd.Next()).ToArray();
             this.shuffledNumbers = newCards;
         }
-
-
 
         private GridSizeInNumber gridSizeInNumber(Memory.GridSize size) {
             switch ((Memory.GridSize)Enum.Parse(typeof(Memory.GridSize), size.ToString())) {
@@ -297,8 +285,8 @@ namespace MemoryGame {
         }
 
         private Boolean secondClickEqualsFirst(Panel panel) {
-            System.Diagnostics.Debug.WriteLine(pictureAddresses[shuffledNumbers[int.Parse(panel.Name)]]);
-            System.Diagnostics.Debug.WriteLine(pictureAddresses[shuffledNumbers[firstClick.pictureNumber]]);
+            //System.Diagnostics.Debug.WriteLine(pictureAddresses[shuffledNumbers[int.Parse(panel.Name)]]);
+            //System.Diagnostics.Debug.WriteLine(pictureAddresses[shuffledNumbers[firstClick.pictureNumber]]);
             if ((pictureAddresses[shuffledNumbers[firstClick.pictureNumber]]) == pictureAddresses[shuffledNumbers[int.Parse(panel.Name)]]) {
                 return true;
             }
@@ -344,7 +332,7 @@ namespace MemoryGame {
             }
         }
 
-        private void button3_Click(object sender, EventArgs e) {
+        private void exitButton_Click(object sender, EventArgs e) {
             var f = new Form1();
             f.Show();
             this.Visible = false;

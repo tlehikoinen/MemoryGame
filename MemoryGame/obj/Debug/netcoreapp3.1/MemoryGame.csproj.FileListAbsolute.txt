@@ -36,3 +36,4 @@ C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGa
 C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.Properties.Resources.resources
 C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.Form2.resources
+C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.csproj.AssemblyReference.cache
