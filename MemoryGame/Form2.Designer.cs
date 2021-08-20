@@ -89,8 +89,8 @@ namespace MemoryGame {
             // 
             // winnerPanelMP
             // 
-            this.winnerPanelMP.Controls.Add(this.player2StatsLabel);
             this.winnerPanelMP.Controls.Add(this.player1StatsLabel);
+            this.winnerPanelMP.Controls.Add(this.player2StatsLabel);
             this.winnerPanelMP.Controls.Add(this.winnerTextBox);
             this.winnerPanelMP.Controls.Add(this.winnerLabel);
             this.winnerPanelMP.Controls.Add(this.label1);
@@ -104,30 +104,28 @@ namespace MemoryGame {
             // 
             // player2StatsLabel
             // 
-            this.player2StatsLabel.AutoSize = true;
             this.player2StatsLabel.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.player2StatsLabel.Location = new System.Drawing.Point(457, 165);
+            this.player2StatsLabel.Location = new System.Drawing.Point(395, 165);
             this.player2StatsLabel.Name = "player2StatsLabel";
-            this.player2StatsLabel.Size = new System.Drawing.Size(0, 20);
+            this.player2StatsLabel.Size = new System.Drawing.Size(170, 20);
             this.player2StatsLabel.TabIndex = 7;
             // 
             // player1StatsLabel
             // 
-            this.player1StatsLabel.AutoSize = true;
             this.player1StatsLabel.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.player1StatsLabel.Location = new System.Drawing.Point(133, 165);
+            this.player1StatsLabel.Location = new System.Drawing.Point(68, 165);
             this.player1StatsLabel.Name = "player1StatsLabel";
-            this.player1StatsLabel.Size = new System.Drawing.Size(0, 20);
+            this.player1StatsLabel.Size = new System.Drawing.Size(170, 20);
             this.player1StatsLabel.TabIndex = 6;
             // 
             // winnerTextBox
             // 
             this.winnerTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.winnerTextBox.Font = new System.Drawing.Font("Sitka Text", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.winnerTextBox.Location = new System.Drawing.Point(268, 339);
+            this.winnerTextBox.Location = new System.Drawing.Point(199, 339);
             this.winnerTextBox.Name = "winnerTextBox";
             this.winnerTextBox.ReadOnly = true;
-            this.winnerTextBox.Size = new System.Drawing.Size(100, 24);
+            this.winnerTextBox.Size = new System.Drawing.Size(246, 24);
             this.winnerTextBox.TabIndex = 5;
             // 
             // winnerLabel
@@ -153,6 +151,7 @@ namespace MemoryGame {
             // player2StatsTextbox
             // 
             this.player2StatsTextbox.BackColor = System.Drawing.SystemColors.Window;
+            this.player2StatsTextbox.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.player2StatsTextbox.Location = new System.Drawing.Point(371, 188);
             this.player2StatsTextbox.Multiline = true;
             this.player2StatsTextbox.Name = "player2StatsTextbox";
@@ -162,6 +161,7 @@ namespace MemoryGame {
             // 
             // player1StatsTextbox
             // 
+            this.player1StatsTextbox.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.player1StatsTextbox.Location = new System.Drawing.Point(49, 188);
             this.player1StatsTextbox.Multiline = true;
             this.player1StatsTextbox.Name = "player1StatsTextbox";
@@ -203,12 +203,12 @@ namespace MemoryGame {
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 662);
+            this.Controls.Add(this.winnerPanelMP);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.currentPlayerLabel);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.memoryGameGrid);
             this.Controls.Add(this.winnerPanelSP);
-            this.Controls.Add(this.winnerPanelMP);
             this.Name = "Form2";
             this.Text = "Form2";
             this.winnerPanelMP.ResumeLayout(false);
