@@ -637,18 +637,28 @@ namespace MemoryGame {
                     this.guessResult.correctGuess = true;
                 }
                 else {
-                    this.guessResult.panel1Number = wrongPanels.ElementAt(this.getRandom(0, wrongPanels.Count)).panelNumber;
+                    try {
+                        this.guessResult.panel2Number = wrongPanels.ElementAt(this.getRandom(0, wrongPanels.Count)).panelNumber;
+                    } catch {
+                        System.Diagnostics.Debug.WriteLine("Errori tuli niinkuin arvelin");
+                        this.guessResult.panel2Number = wrongPanels.ElementAt(this.getRandom(0, wrongPanels.Count-1)).panelNumber;
+                    }
                 }
             }
             else {
                 this.guessResult.panel2Number = panels.ElementAt(0).panelNumber;
                 if (guessPicture(panels.ElementAt(1).knows)) {
-                    this.guessResult.panel2Number = panels.ElementAt(1).panelNumber;
+                    this.guessResult.panel1Number = panels.ElementAt(1).panelNumber;
                     System.Diagnostics.Debug.WriteLine("CORECT");
                     this.guessResult.correctGuess = true;
                 }
                 else {
-                    this.guessResult.panel2Number = wrongPanels.ElementAt(this.getRandom(0, wrongPanels.Count)).panelNumber;
+                    try {
+                        this.guessResult.panel1Number = wrongPanels.ElementAt(this.getRandom(0, wrongPanels.Count)).panelNumber;
+                    } catch {
+                        System.Diagnostics.Debug.WriteLine("Errori tuli niinkuin arvelin");
+                        this.guessResult.panel1Number = wrongPanels.ElementAt(this.getRandom(0, wrongPanels.Count - 1)).panelNumber;
+                    }
                 }
             }
             System.Diagnostics.Debug.WriteLine("DID I GUESS CORRECTLY " + this.guessResult.correctGuess);
