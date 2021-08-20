@@ -91,6 +91,7 @@ namespace MemoryGame
             this.catsRadioImage = new System.Windows.Forms.PictureBox();
             this.characterRadioImage = new System.Windows.Forms.PictureBox();
             this.catsRadio = new System.Windows.Forms.RadioButton();
+            this.descriptionTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -211,6 +212,7 @@ namespace MemoryGame
             // 
             // homePanel
             // 
+            this.homePanel.Controls.Add(this.descriptionTextBox);
             this.homePanel.Controls.Add(this.label14);
             this.homePanel.Location = new System.Drawing.Point(22, 12);
             this.homePanel.Name = "homePanel";
@@ -780,6 +782,16 @@ namespace MemoryGame
             this.catsRadio.UseVisualStyleBackColor = true;
             this.catsRadio.CheckedChanged += new System.EventHandler(this.catsRadio_CheckedChanged);
             // 
+            // descriptionTextBox
+            // 
+            this.descriptionTextBox.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.descriptionTextBox.Location = new System.Drawing.Point(38, 102);
+            this.descriptionTextBox.Multiline = true;
+            this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.Size = new System.Drawing.Size(308, 54);
+            this.descriptionTextBox.TabIndex = 2;
+            this.descriptionTextBox.Text = "This game increases memory capacity!\r\n\r\n";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -893,6 +905,7 @@ namespace MemoryGame
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label newUserExistsError2;
         private System.Windows.Forms.Label newUserExistsError1;
+        private System.Windows.Forms.TextBox descriptionTextBox;
     }
 }
 

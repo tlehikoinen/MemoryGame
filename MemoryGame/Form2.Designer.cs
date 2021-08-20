@@ -26,11 +26,10 @@ namespace MemoryGame {
         private void InitializeComponent() {
             this.exitButton = new System.Windows.Forms.Button();
             this.memoryGameGrid = new System.Windows.Forms.TableLayoutPanel();
-            this.button8 = new System.Windows.Forms.Button();
             this.currentPlayerLabel = new System.Windows.Forms.Label();
             this.winnerPanelMP = new System.Windows.Forms.Panel();
-            this.player2StatsLabel = new System.Windows.Forms.Label();
             this.player1StatsLabel = new System.Windows.Forms.Label();
+            this.player2StatsLabel = new System.Windows.Forms.Label();
             this.winnerTextBox = new System.Windows.Forms.TextBox();
             this.winnerLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,11 +44,12 @@ namespace MemoryGame {
             // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(673, 72);
+            this.exitButton.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.exitButton.Location = new System.Drawing.Point(670, 45);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(75, 23);
+            this.exitButton.Size = new System.Drawing.Size(91, 62);
             this.exitButton.TabIndex = 4;
-            this.exitButton.Text = "exit";
+            this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
@@ -66,16 +66,6 @@ namespace MemoryGame {
             this.memoryGameGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.memoryGameGrid.Size = new System.Drawing.Size(600, 600);
             this.memoryGameGrid.TabIndex = 8;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(673, 218);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 10;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // currentPlayerLabel
             // 
@@ -102,14 +92,6 @@ namespace MemoryGame {
             this.winnerPanelMP.TabIndex = 13;
             this.winnerPanelMP.Visible = false;
             // 
-            // player2StatsLabel
-            // 
-            this.player2StatsLabel.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.player2StatsLabel.Location = new System.Drawing.Point(395, 165);
-            this.player2StatsLabel.Name = "player2StatsLabel";
-            this.player2StatsLabel.Size = new System.Drawing.Size(170, 20);
-            this.player2StatsLabel.TabIndex = 7;
-            // 
             // player1StatsLabel
             // 
             this.player1StatsLabel.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -117,6 +99,14 @@ namespace MemoryGame {
             this.player1StatsLabel.Name = "player1StatsLabel";
             this.player1StatsLabel.Size = new System.Drawing.Size(170, 20);
             this.player1StatsLabel.TabIndex = 6;
+            // 
+            // player2StatsLabel
+            // 
+            this.player2StatsLabel.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.player2StatsLabel.Location = new System.Drawing.Point(395, 165);
+            this.player2StatsLabel.Name = "player2StatsLabel";
+            this.player2StatsLabel.Size = new System.Drawing.Size(170, 20);
+            this.player2StatsLabel.TabIndex = 7;
             // 
             // winnerTextBox
             // 
@@ -206,7 +196,6 @@ namespace MemoryGame {
             this.Controls.Add(this.winnerPanelMP);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.currentPlayerLabel);
-            this.Controls.Add(this.button8);
             this.Controls.Add(this.memoryGameGrid);
             this.Controls.Add(this.winnerPanelSP);
             this.Name = "Form2";
@@ -223,7 +212,6 @@ namespace MemoryGame {
         #endregion
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.TableLayoutPanel memoryGameGrid;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label currentPlayerLabel;
         private System.Windows.Forms.Panel winnerPanelMP;
         private System.Windows.Forms.TextBox winnerTextBox;
