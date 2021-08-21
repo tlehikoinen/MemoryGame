@@ -309,11 +309,10 @@ namespace MemoryGame {
 
 
                 panelList.ElementAt(result.panel1Number).BackgroundImage = resizeImage(Image.FromFile(pictureAddresses[shuffledNumbers[result.panel1Number]]), panelList.ElementAt(1).Size);
-                wait(1000);
+                wait(1500);
                 updateGuess();
                 panelList.ElementAt(result.panel2Number).BackgroundImage = resizeImage(Image.FromFile(pictureAddresses[shuffledNumbers[result.panel2Number]]), panelList.ElementAt(1).Size);
                 wait(1000);
-                updateGuess();
                 System.Diagnostics.Debug.WriteLine("Computer guess result " + result.correctGuess);
                 if (!result.correctGuess) {
                     panelList.ElementAt(result.panel1Number).BackgroundImage = null;
@@ -660,7 +659,8 @@ namespace MemoryGame {
                         // Error is catched if there is only two panels left, and computer hasn't fully learned the guessed panel position,
                         // In this case other panel is automatically set to match the last!
                         System.Diagnostics.Debug.WriteLine("Computer didn't know last position but error was catched");
-                        this.guessResult.panel2Number = panels.ElementAt(1).panelNumber;  
+                        this.guessResult.panel2Number = panels.ElementAt(1).panelNumber;
+                        this.guessResult.correctGuess = true;
                     }
                 }
             }
@@ -678,6 +678,7 @@ namespace MemoryGame {
                         // In this case other panel is automatically set to match the last!
                         System.Diagnostics.Debug.WriteLine("Computer didn't know last position but error was catched");
                         this.guessResult.panel1Number = panels.ElementAt(0).panelNumber;
+                        this.guessResult.correctGuess = true;
                     }
                 }
             }
