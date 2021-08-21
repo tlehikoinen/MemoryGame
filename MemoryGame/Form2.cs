@@ -100,52 +100,70 @@ namespace MemoryGame {
         }
 
         private void checkAndSetWinner() {
-            Player gamePlayer1 = game.getMemoryPlayer1();
-            Player gamePlayer2 = game.getMemoryPlayer2();
-            int player1Guesses = player1.getGuesses().correctGuesses;
-            int player2Guesses = player2.getGuesses().correctGuesses;
-            if (player1Guesses == player2Guesses) {
-                setEndGameScreenMultiplayer(true);
-                // NEEDS COMP PLAYER
-                if(game.getGameState() == Memory.State.multiplayer) {
-                    UpdateData(gamePlayer1, gamePlayer2, true);
-                }
-                return;
-            }
-            if (player1Guesses > player2Guesses) {
-                state.winningPlayer = this.player1;
-            }
-            else {
-                state.winningPlayer = this.player2;
-            }
             switch ((Memory.State)Enum.Parse(typeof(Memory.State), game.getGameState().ToString())) {
-                case (Memory.State.singleplayer): {
-                    setEndGameScreenSinglePlayer();
+                case Memory.State.singleplayer: {
+                    checkAndSetSingleplayer();
                     break;
                 }
-                case (Memory.State.multiplayer): {
-                    this.state.winningPlayerOrgForm = this.player1 == this.state.winningPlayer ? gamePlayer1 : gamePlayer2;
-                    setEndGameScreenMultiplayer(false);
-                    UpdateData(gamePlayer1, gamePlayer2, false);
+                case Memory.State.multiplayer: {
+                    checkAndSetMultiplayer();
                     break;
                 }
-                case (Memory.State.vsComputer): {
-                    System.Diagnostics.Debug.WriteLine("konehan ei vielä edes toimi");
-                    this.state.winningPlayerOrgForm = this.player1 == state.winningPlayer ? game.getMemoryPlayer1() : game.getComputerPlayer();
-                    setEndGameScreenMultiplayer(false);
+                case Memory.State.vsComputer: {
+                    checkAndSetVsComputer();
                     break;
                 }
             }
         }
 
-        private void UpdateData(Player player1, Player player2, bool draw) {
-            if (draw) {
+        private void checkAndSetSingleplayer() {
+            Player player = game.getMemoryPlayer1();
+            UpdateSingleplayerData(player);
+            setEndGameScreenSinglePlayer();
+
+        }
+        private void checkAndSetMultiplayer() {
+            Player player1 = game.getMemoryPlayer1();
+            Player player2 = game.getMemoryPlayer2();
+            UpdateMultiplayerData(player1, player2);
+            setEndGameScreenMultiplayer(this.player1.getGuesses().correctGuesses == this.player2.getGuesses().correctGuesses);
+            
+        }
+        private void checkAndSetVsComputer() {
+            Player player = game.getMemoryPlayer1();
+            ComputerPlayer computerPlayer = game.getComputerPlayer();
+            UpdateVsComputerData(player, computerPlayer);
+            setEndGameScreenMultiplayer(this.player1.getGuesses().correctGuesses == this.player2.getGuesses().correctGuesses);
+
+        }
+
+
+        private void UpdateMultiplayerData(Player player1, Player player2) {
+            int player1Guesses = this.player1.getGuesses().correctGuesses;
+            int player2Guesses = this.player2.getGuesses().correctGuesses;
+            if (player1Guesses == player2Guesses) {
                 game.updateData(player1, 1, 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
                 game.updateData(player2, 1, 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
             }
             else {
-                game.updateData(player1, 1, player1 == this.state.winningPlayerOrgForm ? 1 : 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
-                game.updateData(player2, 1, player2 == this.state.winningPlayerOrgForm ? 1 : 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
+                game.updateData(player1, 1, player1Guesses > player2Guesses ? 1 : 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
+                game.updateData(player2, 1, player2Guesses > player1Guesses ? 1 : 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
+            }
+        }
+
+        private void UpdateSingleplayerData(Player player1) {
+            game.updateDataSingleplayer(player1, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
+        }
+        private void UpdateVsComputerData(Player player, ComputerPlayer computerPlayer) {
+            int playerGuesses = this.player1.getGuesses().correctGuesses;
+            int computerGuesses = this.player2.getGuesses().correctGuesses;
+            if (playerGuesses == computerGuesses) {
+                game.updateData(player, 1, 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
+                game.updateComputerplayerData(computerPlayer, 1, 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
+            }
+            else {
+                game.updateData(player, 1, playerGuesses > computerGuesses ? 1 : 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
+                game.updateComputerplayerData(computerPlayer, 1, computerGuesses > playerGuesses? 1 : 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
             }
         }
 
@@ -166,7 +184,11 @@ namespace MemoryGame {
             player1StatsTextbox.Text = "Guesses : " + this.player1.getGuesses().guesses + "\r\n" + "Correct guesses : " + this.player1.getGuesses().correctGuesses;
             player2StatsTextbox.Text = "Guesses : " + this.player2.getGuesses().guesses + "\r\n" + "Correct guesses : " + this.player2.getGuesses().correctGuesses;
             if (!draw) {
-                winnerTextBox.Text = this.state.winningPlayerOrgForm.name;
+                if(game.getGameState() == Memory.State.multiplayer) {
+                    winnerTextBox.Text = this.player1.getGuesses().correctGuesses > this.player2.getGuesses().correctGuesses ? game.getMemoryPlayer1().name : game.getMemoryPlayer2().name;
+                } else {
+                    winnerTextBox.Text = this.player1.getGuesses().correctGuesses > this.player2.getGuesses().correctGuesses ? game.getMemoryPlayer1().name : game.getComputerPlayer().name;
+                }
             }
             else {
                 winnerLabel.Text = "Draw";

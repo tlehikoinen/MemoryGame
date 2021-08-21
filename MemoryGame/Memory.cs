@@ -147,6 +147,14 @@ namespace MemoryGame {
             var data = player.recordForm();
             handler.updateRow(data);
         }
+        public void updateDataSingleplayer(Player player, int guesses, int correctGuesses) {
+            System.Diagnostics.Debug.WriteLine("Single player data is not yet saved / updated " + player.name + guesses + correctGuesses);
+        }
+        public void updateComputerplayerData(ComputerPlayer player, int gamesPlayed, int gamesWon, int guesses, int correctGuesses) {
+            player.UpdatePlayerInfo(gamesPlayed, gamesWon, guesses, correctGuesses);
+            var data = player.recordForm();
+            handler.updateRow(data);
+        }
         public void somethingNames() {
             handler.parseData();
         }
