@@ -114,9 +114,21 @@ namespace MemoryGame {
         }
 
         public void setComputerPlayer(ComputerPlayer player) {
-            this.player3 = player;
-            this.handler.addRow(this.player3.recordForm());
+            bool alreadyExist = false;
+            foreach(string[] item in playerData) {
+                if (item[0] == player.name) {
+                    player.SetPlayerInfo(item[0], int.Parse(item[1]), int.Parse(item[2]), int.Parse(item[3]), int.Parse(item[4]));
+
+                    this.player3 = player;
+                    this.handler.addRow(this.player3.recordForm());
+                }
+            }
+            if (!alreadyExist) {
+                this.player3 = player;
+                this.handler.addRow(this.player3.recordForm());
+            }
         }
+
         public Player getMemoryPlayer1() {
             return this.player1;
         }
@@ -144,6 +156,14 @@ namespace MemoryGame {
         }
         public void updateData(Player player, int gamesPlayed, int gamesWon, int guesses, int correctGuesses) {
             player.UpdatePlayerInfo(gamesPlayed, gamesWon, guesses, correctGuesses);
+            var data = player.recordForm();
+            handler.updateRow(data);
+        }
+        public void updateDataSingleplayer(Player player, int guesses, int correctGuesses) {
+            System.Diagnostics.Debug.WriteLine("Single player data is not yet saved / updated " + player.name + " " +  guesses + " " + correctGuesses);
+        }
+        public void updateComputerplayerData(ComputerPlayer player, int gamesPlayed, int gamesWon, int guesses, int correctGuesses) {
+            this.player3.UpdatePlayerInfo(gamesPlayed, gamesWon, guesses, correctGuesses);
             var data = player.recordForm();
             handler.updateRow(data);
         }
@@ -184,8 +204,8 @@ namespace MemoryGame {
 
     public class ComputerPlayer : Player {
 
-        private string[] adjectives = { "Furious", "Soft", "Unaccountable", "Zany", "Moldy", "Mountainous", "Flakyubiquitous", "Utter" };
-        private string[] names = { "Horn", "Copper", "Acoustics", "Servant", "Company", "Lumber", "Crime", "Station", "Story", "Bushes", "Government", "Back" };
+        private string[] adjectives = { "Furious", "Notorious", "Big" };
+        private string[] names = { "Horn", "Boombox", "Kitty" };
 
         public string formName() {
             string name = "";
@@ -236,7 +256,7 @@ namespace MemoryGame {
         public void addRow(string data) {
             string[] splitted = data.Split(",");
             string name = splitted[0];
-            Boolean alreadyExists = false;
+            bool alreadyExists = false;
             var existingData = parseData();
             foreach (string[] item in existingData) {
                 if (item[0] == name) {

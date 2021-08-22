@@ -38,6 +38,7 @@ namespace MemoryGame {
             this.winnerPanelTextBox = new System.Windows.Forms.TextBox();
             this.winnerPanelSP = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.playAgainBtn = new System.Windows.Forms.Button();
             this.winnerPanelMP.SuspendLayout();
             this.winnerPanelSP.SuspendLayout();
             this.SuspendLayout();
@@ -47,7 +48,7 @@ namespace MemoryGame {
             this.exitButton.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.exitButton.Location = new System.Drawing.Point(670, 45);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(91, 62);
+            this.exitButton.Size = new System.Drawing.Size(101, 62);
             this.exitButton.TabIndex = 4;
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
@@ -188,11 +189,24 @@ namespace MemoryGame {
             this.label2.TabIndex = 1;
             this.label2.Text = "Congrats!";
             // 
+            // playAgainBtn
+            // 
+            this.playAgainBtn.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.playAgainBtn.Location = new System.Drawing.Point(670, 135);
+            this.playAgainBtn.Name = "playAgainBtn";
+            this.playAgainBtn.Size = new System.Drawing.Size(101, 62);
+            this.playAgainBtn.TabIndex = 15;
+            this.playAgainBtn.Text = "Play Again";
+            this.playAgainBtn.UseVisualStyleBackColor = true;
+            this.playAgainBtn.Visible = false;
+            this.playAgainBtn.Click += new System.EventHandler(this.playAgainBtn_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 662);
+            this.Controls.Add(this.playAgainBtn);
             this.Controls.Add(this.winnerPanelMP);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.currentPlayerLabel);
@@ -224,5 +238,6 @@ namespace MemoryGame {
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label player2StatsLabel;
         private System.Windows.Forms.Label player1StatsLabel;
+        private System.Windows.Forms.Button playAgainBtn;
     }
 }

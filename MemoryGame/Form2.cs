@@ -91,72 +91,86 @@ namespace MemoryGame {
         }
         private void endGame() {
             checkAndSetWinner();
-            System.Diagnostics.Debug.WriteLine("Player1");
-            System.Diagnostics.Debug.WriteLine(player1.getGuesses().guesses);
-            System.Diagnostics.Debug.WriteLine(player1.getGuesses().correctGuesses);
-            System.Diagnostics.Debug.WriteLine("Player2");
-            System.Diagnostics.Debug.WriteLine(player2.getGuesses().guesses);
-            System.Diagnostics.Debug.WriteLine(player2.getGuesses().correctGuesses);
         }
 
         private void checkAndSetWinner() {
-            Player gamePlayer1 = game.getMemoryPlayer1();
-            Player gamePlayer2 = game.getMemoryPlayer2();
-            int player1Guesses = player1.getGuesses().correctGuesses;
-            int player2Guesses = player2.getGuesses().correctGuesses;
-            if (player1Guesses == player2Guesses) {
-                setEndGameScreenMultiplayer(true);
-                // NEEDS COMP PLAYER
-                if(game.getGameState() == Memory.State.multiplayer) {
-                    UpdateData(gamePlayer1, gamePlayer2, true);
-                }
-                return;
-            }
-            if (player1Guesses > player2Guesses) {
-                state.winningPlayer = this.player1;
-            }
-            else {
-                state.winningPlayer = this.player2;
-            }
             switch ((Memory.State)Enum.Parse(typeof(Memory.State), game.getGameState().ToString())) {
-                case (Memory.State.singleplayer): {
-                    setEndGameScreenSinglePlayer();
+                case Memory.State.singleplayer: {
+                    checkAndSetSingleplayer();
                     break;
                 }
-                case (Memory.State.multiplayer): {
-                    this.state.winningPlayerOrgForm = this.player1 == this.state.winningPlayer ? gamePlayer1 : gamePlayer2;
-                    setEndGameScreenMultiplayer(false);
-                    UpdateData(gamePlayer1, gamePlayer2, false);
+                case Memory.State.multiplayer: {
+                    checkAndSetMultiplayer();
                     break;
                 }
-                case (Memory.State.vsComputer): {
-                    System.Diagnostics.Debug.WriteLine("konehan ei vielä edes toimi");
-                    this.state.winningPlayerOrgForm = this.player1 == state.winningPlayer ? game.getMemoryPlayer1() : game.getComputerPlayer();
-                    setEndGameScreenMultiplayer(false);
+                case Memory.State.vsComputer: {
+                    checkAndSetVsComputer();
                     break;
                 }
             }
         }
 
-        private void UpdateData(Player player1, Player player2, bool draw) {
-            if (draw) {
+        private void checkAndSetSingleplayer() {
+            Player player = game.getMemoryPlayer1();
+            UpdateSingleplayerData(player);
+            setEndGameScreenSinglePlayer();
+
+        }
+        private void checkAndSetMultiplayer() {
+            Player GamePlayer1 = game.getMemoryPlayer1();
+            Player GamePlayer2 = game.getMemoryPlayer2();
+            UpdateMultiplayerData(GamePlayer1, GamePlayer2);
+            setEndGameScreenMultiplayer(this.player1.getGuesses().correctGuesses == this.player2.getGuesses().correctGuesses);
+            
+        }
+        private void checkAndSetVsComputer() {
+            Player player = game.getMemoryPlayer1();
+            ComputerPlayer computerPlayer = game.getComputerPlayer();
+            UpdateVsComputerData(player, computerPlayer);
+            setEndGameScreenMultiplayer(this.player1.getGuesses().correctGuesses == this.player2.getGuesses().correctGuesses);
+
+        }
+
+
+        private void UpdateMultiplayerData(Player player1, Player player2) {
+            int player1Guesses = this.player1.getGuesses().correctGuesses;
+            int player2Guesses = this.player2.getGuesses().correctGuesses;
+            if (player1Guesses == player2Guesses) {
                 game.updateData(player1, 1, 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
                 game.updateData(player2, 1, 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
             }
             else {
-                game.updateData(player1, 1, player1 == this.state.winningPlayerOrgForm ? 1 : 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
-                game.updateData(player2, 1, player2 == this.state.winningPlayerOrgForm ? 1 : 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
+                game.updateData(player1, 1, player1Guesses > player2Guesses ? 1 : 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
+                game.updateData(player2, 1, player2Guesses > player1Guesses ? 1 : 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
+            }
+        }
+
+        private void UpdateSingleplayerData(Player player1) {
+            game.updateDataSingleplayer(player1, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
+        }
+        private void UpdateVsComputerData(Player player, ComputerPlayer computerPlayer) {
+            int playerGuesses = this.player1.getGuesses().correctGuesses;
+            int computerGuesses = this.player2.getGuesses().correctGuesses;
+            if (playerGuesses == computerGuesses) {
+                game.updateData(player, 1, 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
+                game.updateComputerplayerData(computerPlayer, 1, 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
+            }
+            else {
+                game.updateData(player, 1, playerGuesses > computerGuesses ? 1 : 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
+                game.updateComputerplayerData(computerPlayer, 1, computerGuesses > playerGuesses? 1 : 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
             }
         }
 
         /* END GAME PANELS */
         private void setEndGameScreenSinglePlayer() {
             Form2HideAll();
+            playAgainBtn.Visible = true;
             winnerPanelTextBox.Text = "Guesses : " + this.player1.getGuesses().guesses + "\r\n" + "Correct guesses : " + this.player1.getGuesses().correctGuesses;
             winnerPanelSP.Visible = true;
         }
         private void setEndGameScreenMultiplayer(Boolean draw) {
             Form2HideAll();
+            playAgainBtn.Visible = true;
             player1StatsLabel.Text = game.getMemoryPlayer1().name;
             if (game.getGameState() == Memory.State.multiplayer) {
                 player2StatsLabel.Text = game.getMemoryPlayer2().name;
@@ -166,7 +180,11 @@ namespace MemoryGame {
             player1StatsTextbox.Text = "Guesses : " + this.player1.getGuesses().guesses + "\r\n" + "Correct guesses : " + this.player1.getGuesses().correctGuesses;
             player2StatsTextbox.Text = "Guesses : " + this.player2.getGuesses().guesses + "\r\n" + "Correct guesses : " + this.player2.getGuesses().correctGuesses;
             if (!draw) {
-                winnerTextBox.Text = this.state.winningPlayerOrgForm.name;
+                if(game.getGameState() == Memory.State.multiplayer) {
+                    winnerTextBox.Text = this.player1.getGuesses().correctGuesses > this.player2.getGuesses().correctGuesses ? game.getMemoryPlayer1().name : game.getMemoryPlayer2().name;
+                } else {
+                    winnerTextBox.Text = this.player1.getGuesses().correctGuesses > this.player2.getGuesses().correctGuesses ? game.getMemoryPlayer1().name : game.getComputerPlayer().name;
+                }
             }
             else {
                 winnerLabel.Text = "Draw";
@@ -280,20 +298,17 @@ namespace MemoryGame {
             memoryGameGrid.Enabled = false;
             
             do {
+                System.Diagnostics.Debug.WriteLine("** COMPUTER STARTS **");
                 this.computerWisdom.guessPictures();
                 ComputerGuessResult result = this.computerWisdom.getGuess();
-                System.Diagnostics.Debug.WriteLine("DO COMPUTER PANEL1 " + result.panel1Number);
-                System.Diagnostics.Debug.WriteLine("DO COMPUTER PANEL2 " + result.panel2Number);
-                System.Diagnostics.Debug.WriteLine("DO COMPUTER PANELRESULT " + result.correctGuess);
-
+                System.Diagnostics.Debug.WriteLine("Computer panels open " + result.panel1Number + " & " + result.panel2Number);
 
                 panelList.ElementAt(result.panel1Number).BackgroundImage = resizeImage(Image.FromFile(pictureAddresses[shuffledNumbers[result.panel1Number]]), panelList.ElementAt(1).Size);
-                wait(1000);
+                wait(1500);
                 updateGuess();
                 panelList.ElementAt(result.panel2Number).BackgroundImage = resizeImage(Image.FromFile(pictureAddresses[shuffledNumbers[result.panel2Number]]), panelList.ElementAt(1).Size);
                 wait(1000);
-                updateGuess();
-                System.Diagnostics.Debug.WriteLine("COMPUTER THINGS " + result.correctGuess);
+                System.Diagnostics.Debug.WriteLine("Computer guess result " + result.correctGuess);
                 if (!result.correctGuess) {
                     panelList.ElementAt(result.panel1Number).BackgroundImage = null;
                     panelList.ElementAt(result.panel2Number).BackgroundImage = null;
@@ -305,25 +320,15 @@ namespace MemoryGame {
 
                 }
                 else {
+                    System.Diagnostics.Debug.WriteLine("** COMPUTER ROUND **");
                     this.computerWisdom.removeMatchedPair(result.panel1Number, result.panel2Number);
                     updateCorrectGuess();
                     continueOrNot = true;
                 }
             } while (continueOrNot && state.ongoingCorrectGuesses != state.maximumCorrectGuesses);
+            System.Diagnostics.Debug.WriteLine("** COMPUTER END **");
 
         }
-
-
-
-        //foreach (int number in shuffledNumbers) {
-        //    System.Diagnostics.Debug.WriteLine(number);
-        //}
-        //foreach (Panel panel in panelList) {
-        //    panel.BackgroundImage = resizeImage(Image.FromFile(pictureAddresses[shuffledNumbers[int.Parse(panel.Name)]]), panel.Size);
-        //}
-        //pictureAddresses[shuffledNumbers[int.Parse(panel.Name)]]
-
-
 
         private void initialiseState() {
             Random rnd = new Random();
@@ -425,8 +430,6 @@ namespace MemoryGame {
                         doComputerThings();
                     }
 
-                
-            
         }
 
 
@@ -470,6 +473,12 @@ namespace MemoryGame {
             while (timer1.Enabled) {
                 Application.DoEvents();
             }
+        }
+
+        private void playAgainBtn_Click(object sender, EventArgs e) {
+            var f = new Form2(game);
+            this.Close();
+            f.Show();
         }
     }
 
@@ -621,48 +630,46 @@ namespace MemoryGame {
             this.guessResult.panel2Number = panels.ElementAt(1).panelNumber;
             this.guessResult.correctGuess = false;
 
-
             //panels.ForEach(i => System.Diagnostics.Debug.WriteLine("Panels i know "  + i.panelNumber + " " + i.number + "  " + i.knows));
             //wrongPanels.ForEach(i => System.Diagnostics.Debug.WriteLine("Panels i dont know " + i.panelNumber + " " + i.number + "  " + i.knows));
+            System.Diagnostics.Debug.WriteLine("Computer initial guess panel number " + number);
 
-            System.Diagnostics.Debug.WriteLine("guess element 0 " + guessPicture(panels.ElementAt(0).knows));
-            System.Diagnostics.Debug.WriteLine("guess element 1 " + guessPicture(panels.ElementAt(1).knows));
-
-
-            if (firstMatch) {
-                this.guessResult.panel1Number = panels.ElementAt(1).panelNumber;
-                if (guessPicture(panels.ElementAt(0).knows)) {
-                    System.Diagnostics.Debug.WriteLine("CORECT");
-                    this.guessResult.panel2Number = panels.ElementAt(0).panelNumber;
+            if (number ==  panels.ElementAt(0).panelNumber) {
+                this.guessResult.panel1Number = panels.ElementAt(0).panelNumber;
+                if (guessPicture(panels.ElementAt(1).knows)) {
+                    this.guessResult.panel2Number = panels.ElementAt(1).panelNumber;
                     this.guessResult.correctGuess = true;
                 }
                 else {
                     try {
                         this.guessResult.panel2Number = wrongPanels.ElementAt(this.getRandom(0, wrongPanels.Count)).panelNumber;
                     } catch {
-                        System.Diagnostics.Debug.WriteLine("Errori tuli niinkuin arvelin");
-                        this.guessResult.panel2Number = wrongPanels.ElementAt(this.getRandom(0, wrongPanels.Count-1)).panelNumber;
+                        // Error is catched if there is only two panels left, and computer hasn't fully learned the guessed panel position,
+                        // In this case other panel is automatically set to match the last!
+                        System.Diagnostics.Debug.WriteLine("Computer didn't know last position but error was catched");
+                        this.guessResult.panel2Number = panels.ElementAt(1).panelNumber;
+                        this.guessResult.correctGuess = true;
                     }
                 }
             }
             else {
-                this.guessResult.panel2Number = panels.ElementAt(0).panelNumber;
-                if (guessPicture(panels.ElementAt(1).knows)) {
-                    this.guessResult.panel1Number = panels.ElementAt(1).panelNumber;
-                    System.Diagnostics.Debug.WriteLine("CORECT");
+                this.guessResult.panel2Number = panels.ElementAt(1).panelNumber;
+                if (guessPicture(panels.ElementAt(0).knows)) {
+                    this.guessResult.panel1Number = panels.ElementAt(0).panelNumber;
                     this.guessResult.correctGuess = true;
                 }
                 else {
                     try {
                         this.guessResult.panel1Number = wrongPanels.ElementAt(this.getRandom(0, wrongPanels.Count)).panelNumber;
                     } catch {
-                        System.Diagnostics.Debug.WriteLine("Errori tuli niinkuin arvelin");
-                        this.guessResult.panel1Number = wrongPanels.ElementAt(this.getRandom(0, wrongPanels.Count - 1)).panelNumber;
+                        // Error is catched if there is only two panels left, and computer hasn't fully learned the guessed panel position,
+                        // In this case other panel is automatically set to match the last!
+                        System.Diagnostics.Debug.WriteLine("Computer didn't know last position but error was catched");
+                        this.guessResult.panel1Number = panels.ElementAt(0).panelNumber;
+                        this.guessResult.correctGuess = true;
                     }
                 }
             }
-            System.Diagnostics.Debug.WriteLine("DID I GUESS CORRECTLY " + this.guessResult.correctGuess);
-            System.Diagnostics.Debug.WriteLine("TESTING END");
         }
 
         private bool guessPicture(int knows) {
@@ -675,24 +682,23 @@ namespace MemoryGame {
                 case int n when (n < 4): {
                     result = (random % 4 == 0);
                     //System.Diagnostics.Debug.WriteLine("GUESSPICTURE FUNC WITH CASE 0123 RESULT " + result);
-                    System.Diagnostics.Debug.WriteLine("result 1 ", result);
+                    System.Diagnostics.Debug.WriteLine("knowledge < 4 " + result);
                     return result;
                 }
                 case int n when (n > 3 && n < 6): {
                     result = (random % 3 == 0);
-                    System.Diagnostics.Debug.WriteLine("result 2 ", result);
+                    System.Diagnostics.Debug.WriteLine("knowledge between 4 and 5 " + result);
                     return result;
                     
                 }
                 case int n when (n > 6 && n < 10): {
                     result = (random % 2 == 0);
-                    System.Diagnostics.Debug.WriteLine("result 3 ", result);
+                    System.Diagnostics.Debug.WriteLine("knowledge between 7-9 " + result);
 
                     return result;
                 }
                 default: {
-                    System.Diagnostics.Debug.WriteLine("default");
-
+                    System.Diagnostics.Debug.WriteLine("Knows fully");
                     return true;
 
                 }
