@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "t4/jDM9p6TEf5ZyoHuMJn3MkOJwEDrZy990x3M2PR3kwQwGe9zy/PPQgwI3FQESGioU1hcqLZltha+uz3V/t0A==",
+  "dgSpecHash": "vAfB4hYvLeo9cGqYy6gSHFA1Wr1frnATYm3B4dwMBdnms9Pc9JQ2X5vfL7deQ8p2lFXpuRgmru2Zml67acYRIg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tommi\\Desktop\\MemoryGame\\MemoryGame\\MemoryGame.csproj",
+  "projectFilePath": "C:\\Users\\Opiskelu\\Desktop\\MemoryGame\\MemoryGame\\MemoryGame.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Tommi\\.nuget\\packages\\csvhelper\\27.1.1\\csvhelper.27.1.1.nupkg.sha512",
-    "C:\\Users\\Tommi\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
+    "C:\\Users\\Opiskelu\\.nuget\\packages\\csvhelper\\27.1.1\\csvhelper.27.1.1.nupkg.sha512",
+    "C:\\Users\\Opiskelu\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }

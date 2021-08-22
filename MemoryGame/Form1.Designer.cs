@@ -64,6 +64,7 @@ namespace MemoryGame
             this.errorTextBox = new System.Windows.Forms.TextBox();
             this.errorPicture = new System.Windows.Forms.PictureBox();
             this.gameOptionPanel = new System.Windows.Forms.Panel();
+            this.ownPicturesRadio = new System.Windows.Forms.RadioButton();
             this.label9 = new System.Windows.Forms.Label();
             this.gridSizes = new System.Windows.Forms.ComboBox();
             this.startBtn = new System.Windows.Forms.Button();
@@ -482,6 +483,7 @@ namespace MemoryGame
             // 
             this.gameOptionPanel.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.gameOptionPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gameOptionPanel.Controls.Add(this.ownPicturesRadio);
             this.gameOptionPanel.Controls.Add(this.label9);
             this.gameOptionPanel.Controls.Add(this.gridSizes);
             this.gameOptionPanel.Controls.Add(this.startBtn);
@@ -493,6 +495,19 @@ namespace MemoryGame
             this.gameOptionPanel.Name = "gameOptionPanel";
             this.gameOptionPanel.Size = new System.Drawing.Size(351, 289);
             this.gameOptionPanel.TabIndex = 5;
+            // 
+            // ownPicturesRadio
+            // 
+            this.ownPicturesRadio.AutoSize = true;
+            this.ownPicturesRadio.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ownPicturesRadio.Location = new System.Drawing.Point(280, 59);
+            this.ownPicturesRadio.Name = "ownPicturesRadio";
+            this.ownPicturesRadio.Size = new System.Drawing.Size(55, 24);
+            this.ownPicturesRadio.TabIndex = 14;
+            this.ownPicturesRadio.TabStop = true;
+            this.ownPicturesRadio.Text = "own";
+            this.ownPicturesRadio.UseVisualStyleBackColor = true;
+            this.ownPicturesRadio.CheckedChanged += new System.EventHandler(this.ownPicturesRadio_CheckedChanged);
             // 
             // label9
             // 
@@ -906,6 +921,7 @@ namespace MemoryGame
         private System.Windows.Forms.Label newUserExistsError2;
         private System.Windows.Forms.Label newUserExistsError1;
         private System.Windows.Forms.TextBox descriptionTextBox;
+        private System.Windows.Forms.RadioButton ownPicturesRadio;
     }
 }
 
