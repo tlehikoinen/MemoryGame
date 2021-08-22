@@ -124,7 +124,6 @@ namespace MemoryGame {
                 }
             }
             if (!alreadyExist) {
-                System.Diagnostics.Debug.WriteLine("TULEEKO TÄMÄKIN");
                 this.player3 = player;
                 this.handler.addRow(this.player3.recordForm());
             }
@@ -161,13 +160,10 @@ namespace MemoryGame {
             handler.updateRow(data);
         }
         public void updateDataSingleplayer(Player player, int guesses, int correctGuesses) {
-            System.Diagnostics.Debug.WriteLine("Single player data is not yet saved / updated " + player.name + guesses + correctGuesses);
+            System.Diagnostics.Debug.WriteLine("Single player data is not yet saved / updated " + player.name + " " +  guesses + " " + correctGuesses);
         }
         public void updateComputerplayerData(ComputerPlayer player, int gamesPlayed, int gamesWon, int guesses, int correctGuesses) {
-            System.Diagnostics.Debug.WriteLine("Updating computer data");
-            System.Diagnostics.Debug.WriteLine("Current guesses: " + this.getComputerPlayer().guesses);
             this.player3.UpdatePlayerInfo(gamesPlayed, gamesWon, guesses, correctGuesses);
-            System.Diagnostics.Debug.WriteLine("Updated guess " + this.getComputerPlayer().guesses);
             var data = player.recordForm();
             handler.updateRow(data);
         }
@@ -208,8 +204,8 @@ namespace MemoryGame {
 
     public class ComputerPlayer : Player {
 
-        private string[] adjectives = { "Furious" };
-        private string[] names = { "Horn" };
+        private string[] adjectives = { "Furious", "Notorious", "Big" };
+        private string[] names = { "Horn", "Boombox", "Kitty" };
 
         public string formName() {
             string name = "";
@@ -280,8 +276,6 @@ namespace MemoryGame {
 
             // Make updated data list
             foreach (string[] item in existingData) {
-                System.Diagnostics.Debug.WriteLine("updaterow item first item  "  + item[0]);
-                System.Diagnostics.Debug.WriteLine("splitted first word " + splitted[0]);
                 if (item[0] == splitted[0]) {
                     updatedData.Add(splitted);
                 } else {

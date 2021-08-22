@@ -91,12 +91,6 @@ namespace MemoryGame {
         }
         private void endGame() {
             checkAndSetWinner();
-            System.Diagnostics.Debug.WriteLine("Player1");
-            System.Diagnostics.Debug.WriteLine(player1.getGuesses().guesses);
-            System.Diagnostics.Debug.WriteLine(player1.getGuesses().correctGuesses);
-            System.Diagnostics.Debug.WriteLine("Player2");
-            System.Diagnostics.Debug.WriteLine(player2.getGuesses().guesses);
-            System.Diagnostics.Debug.WriteLine(player2.getGuesses().correctGuesses);
         }
 
         private void checkAndSetWinner() {
@@ -141,7 +135,6 @@ namespace MemoryGame {
         private void UpdateMultiplayerData(Player player1, Player player2) {
             int player1Guesses = this.player1.getGuesses().correctGuesses;
             int player2Guesses = this.player2.getGuesses().correctGuesses;
-            System.Diagnostics.Debug.WriteLine("Updating player 1 " + player1.name + " and player2 " + player2.name);
             if (player1Guesses == player2Guesses) {
                 game.updateData(player1, 1, 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
                 game.updateData(player2, 1, 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
@@ -336,15 +329,6 @@ namespace MemoryGame {
             System.Diagnostics.Debug.WriteLine("** COMPUTER END **");
 
         }
-
-
-        //foreach (int number in shuffledNumbers) {
-        //    System.Diagnostics.Debug.WriteLine(number);
-        //}
-        //foreach (Panel panel in panelList) {
-        //    panel.BackgroundImage = resizeImage(Image.FromFile(pictureAddresses[shuffledNumbers[int.Parse(panel.Name)]]), panel.Size);
-        //}
-        //pictureAddresses[shuffledNumbers[int.Parse(panel.Name)]]
 
         private void initialiseState() {
             Random rnd = new Random();
@@ -686,8 +670,6 @@ namespace MemoryGame {
                     }
                 }
             }
-            System.Diagnostics.Debug.WriteLine("DID I GUESS CORRECTLY " + this.guessResult.correctGuess);
-            System.Diagnostics.Debug.WriteLine("TESTING END");
         }
 
         private bool guessPicture(int knows) {
