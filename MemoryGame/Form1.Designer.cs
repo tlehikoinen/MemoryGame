@@ -38,26 +38,6 @@ namespace MemoryGame
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.helpBtn = new System.Windows.Forms.Button();
-            this.homePanel = new System.Windows.Forms.Panel();
-            this.label14 = new System.Windows.Forms.Label();
-            this.vsSinglePanel = new System.Windows.Forms.Panel();
-            this.existingUserRadioBtn1 = new System.Windows.Forms.RadioButton();
-            this.newUserRadioBtn1 = new System.Windows.Forms.RadioButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.newUserPanel1 = new System.Windows.Forms.Panel();
-            this.newUser1Label = new System.Windows.Forms.Label();
-            this.newUser1Btn = new System.Windows.Forms.Button();
-            this.newUser1Name = new System.Windows.Forms.TextBox();
-            this.newUserExistsError1 = new System.Windows.Forms.Label();
-            this.existingUserPanel1 = new System.Windows.Forms.Panel();
-            this.existingUserBtn1 = new System.Windows.Forms.Button();
-            this.existingUserComboBox1 = new System.Windows.Forms.ComboBox();
-            this.existingUser1Label = new System.Windows.Forms.Label();
-            this.statisticsPanel = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.statisticsHeader = new System.Windows.Forms.Label();
             this.vsComputerPanel = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.computerDifficulties = new System.Windows.Forms.ComboBox();
@@ -91,19 +71,33 @@ namespace MemoryGame
             this.catsRadioImage = new System.Windows.Forms.PictureBox();
             this.characterRadioImage = new System.Windows.Forms.PictureBox();
             this.catsRadio = new System.Windows.Forms.RadioButton();
+            this.homePanel = new System.Windows.Forms.Panel();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.statisticsPanel = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.statisticsHeader = new System.Windows.Forms.Label();
+            this.vsSinglePanel = new System.Windows.Forms.Panel();
+            this.existingUserRadioBtn1 = new System.Windows.Forms.RadioButton();
+            this.newUserRadioBtn1 = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.newUserPanel1 = new System.Windows.Forms.Panel();
+            this.newUser1Label = new System.Windows.Forms.Label();
+            this.newUser1Btn = new System.Windows.Forms.Button();
+            this.newUser1Name = new System.Windows.Forms.TextBox();
+            this.newUserExistsError1 = new System.Windows.Forms.Label();
+            this.existingUserPanel1 = new System.Windows.Forms.Panel();
+            this.existingUserBtn1 = new System.Windows.Forms.Button();
+            this.existingUserComboBox1 = new System.Windows.Forms.ComboBox();
+            this.existingUser1Label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
-            this.homePanel.SuspendLayout();
-            this.vsSinglePanel.SuspendLayout();
-            this.newUserPanel1.SuspendLayout();
-            this.existingUserPanel1.SuspendLayout();
-            this.statisticsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.vsComputerPanel.SuspendLayout();
             this.vsPlayerPanel.SuspendLayout();
             this.newUserPanel2.SuspendLayout();
@@ -114,6 +108,12 @@ namespace MemoryGame
             this.gameOptionPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.catsRadioImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.characterRadioImage)).BeginInit();
+            this.homePanel.SuspendLayout();
+            this.statisticsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.vsSinglePanel.SuspendLayout();
+            this.newUserPanel1.SuspendLayout();
+            this.existingUserPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // vsPlayerBtn
@@ -178,14 +178,14 @@ namespace MemoryGame
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.homePanel);
-            this.splitContainer1.Panel2.Controls.Add(this.vsSinglePanel);
-            this.splitContainer1.Panel2.Controls.Add(this.statisticsPanel);
             this.splitContainer1.Panel2.Controls.Add(this.vsComputerPanel);
             this.splitContainer1.Panel2.Controls.Add(this.vsPlayerPanel);
             this.splitContainer1.Panel2.Controls.Add(this.helpPanel);
             this.splitContainer1.Panel2.Controls.Add(this.errorPanel);
             this.splitContainer1.Panel2.Controls.Add(this.gameOptionPanel);
+            this.splitContainer1.Panel2.Controls.Add(this.homePanel);
+            this.splitContainer1.Panel2.Controls.Add(this.statisticsPanel);
+            this.splitContainer1.Panel2.Controls.Add(this.vsSinglePanel);
             this.splitContainer1.Size = new System.Drawing.Size(1212, 761);
             this.splitContainer1.SplitterDistance = 305;
             this.splitContainer1.TabIndex = 7;
@@ -209,218 +209,6 @@ namespace MemoryGame
             this.helpBtn.Text = "Help";
             this.helpBtn.UseVisualStyleBackColor = true;
             this.helpBtn.Click += new System.EventHandler(this.helpBtn_Click);
-            // 
-            // homePanel
-            // 
-            this.homePanel.Controls.Add(this.descriptionTextBox);
-            this.homePanel.Controls.Add(this.label14);
-            this.homePanel.Location = new System.Drawing.Point(22, 12);
-            this.homePanel.Name = "homePanel";
-            this.homePanel.Size = new System.Drawing.Size(351, 235);
-            this.homePanel.TabIndex = 6;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Sitka Text", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(25, 12);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(167, 47);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "Welcome!";
-            // 
-            // vsSinglePanel
-            // 
-            this.vsSinglePanel.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.vsSinglePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.vsSinglePanel.Controls.Add(this.existingUserRadioBtn1);
-            this.vsSinglePanel.Controls.Add(this.newUserRadioBtn1);
-            this.vsSinglePanel.Controls.Add(this.label3);
-            this.vsSinglePanel.Controls.Add(this.label2);
-            this.vsSinglePanel.Controls.Add(this.label1);
-            this.vsSinglePanel.Controls.Add(this.newUserPanel1);
-            this.vsSinglePanel.Controls.Add(this.existingUserPanel1);
-            this.vsSinglePanel.Location = new System.Drawing.Point(22, 12);
-            this.vsSinglePanel.Name = "vsSinglePanel";
-            this.vsSinglePanel.Size = new System.Drawing.Size(350, 235);
-            this.vsSinglePanel.TabIndex = 0;
-            // 
-            // existingUserRadioBtn1
-            // 
-            this.existingUserRadioBtn1.AutoSize = true;
-            this.existingUserRadioBtn1.Location = new System.Drawing.Point(134, 35);
-            this.existingUserRadioBtn1.Name = "existingUserRadioBtn1";
-            this.existingUserRadioBtn1.Size = new System.Drawing.Size(14, 13);
-            this.existingUserRadioBtn1.TabIndex = 11;
-            this.existingUserRadioBtn1.TabStop = true;
-            this.existingUserRadioBtn1.UseVisualStyleBackColor = true;
-            this.existingUserRadioBtn1.CheckedChanged += new System.EventHandler(this.existingUserRadioBtn1_CheckedChanged);
-            // 
-            // newUserRadioBtn1
-            // 
-            this.newUserRadioBtn1.AutoSize = true;
-            this.newUserRadioBtn1.Location = new System.Drawing.Point(43, 35);
-            this.newUserRadioBtn1.Name = "newUserRadioBtn1";
-            this.newUserRadioBtn1.Size = new System.Drawing.Size(14, 13);
-            this.newUserRadioBtn1.TabIndex = 10;
-            this.newUserRadioBtn1.TabStop = true;
-            this.newUserRadioBtn1.UseVisualStyleBackColor = true;
-            this.newUserRadioBtn1.CheckedChanged += new System.EventHandler(this.newUserRadioBtn1_CheckedChanged);
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Sitka Text", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(205, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(145, 70);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Player1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(102, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Existing user";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Cursor = System.Windows.Forms.Cursors.VSplit;
-            this.label1.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(23, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "New user";
-            // 
-            // newUserPanel1
-            // 
-            this.newUserPanel1.Controls.Add(this.newUser1Label);
-            this.newUserPanel1.Controls.Add(this.newUser1Btn);
-            this.newUserPanel1.Controls.Add(this.newUser1Name);
-            this.newUserPanel1.Controls.Add(this.newUserExistsError1);
-            this.newUserPanel1.Location = new System.Drawing.Point(43, 96);
-            this.newUserPanel1.Name = "newUserPanel1";
-            this.newUserPanel1.Size = new System.Drawing.Size(200, 100);
-            this.newUserPanel1.TabIndex = 7;
-            this.newUserPanel1.Visible = false;
-            // 
-            // newUser1Label
-            // 
-            this.newUser1Label.AutoSize = true;
-            this.newUser1Label.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.newUser1Label.Location = new System.Drawing.Point(68, 13);
-            this.newUser1Label.Name = "newUser1Label";
-            this.newUser1Label.Size = new System.Drawing.Size(75, 20);
-            this.newUser1Label.TabIndex = 2;
-            this.newUser1Label.Text = "Username";
-            // 
-            // newUser1Btn
-            // 
-            this.newUser1Btn.Enabled = false;
-            this.newUser1Btn.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.newUser1Btn.Location = new System.Drawing.Point(68, 64);
-            this.newUser1Btn.Name = "newUser1Btn";
-            this.newUser1Btn.Size = new System.Drawing.Size(75, 31);
-            this.newUser1Btn.TabIndex = 1;
-            this.newUser1Btn.Text = "Save";
-            this.newUser1Btn.UseVisualStyleBackColor = true;
-            this.newUser1Btn.Click += new System.EventHandler(this.newUser1Btn_Click);
-            // 
-            // newUser1Name
-            // 
-            this.newUser1Name.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.newUser1Name.Location = new System.Drawing.Point(56, 36);
-            this.newUser1Name.Name = "newUser1Name";
-            this.newUser1Name.Size = new System.Drawing.Size(100, 24);
-            this.newUser1Name.TabIndex = 0;
-            this.newUser1Name.TextChanged += new System.EventHandler(this.newUser1Name_TextChanged);
-            // 
-            // newUserExistsError1
-            // 
-            this.newUserExistsError1.AutoSize = true;
-            this.newUserExistsError1.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.newUserExistsError1.ForeColor = System.Drawing.Color.IndianRed;
-            this.newUserExistsError1.Location = new System.Drawing.Point(40, 68);
-            this.newUserExistsError1.Name = "newUserExistsError1";
-            this.newUserExistsError1.Size = new System.Drawing.Size(137, 20);
-            this.newUserExistsError1.TabIndex = 12;
-            this.newUserExistsError1.Text = "Name already exist";
-            this.newUserExistsError1.Visible = false;
-            // 
-            // existingUserPanel1
-            // 
-            this.existingUserPanel1.Controls.Add(this.existingUserBtn1);
-            this.existingUserPanel1.Controls.Add(this.existingUserComboBox1);
-            this.existingUserPanel1.Controls.Add(this.existingUser1Label);
-            this.existingUserPanel1.Location = new System.Drawing.Point(43, 96);
-            this.existingUserPanel1.Name = "existingUserPanel1";
-            this.existingUserPanel1.Size = new System.Drawing.Size(200, 100);
-            this.existingUserPanel1.TabIndex = 8;
-            this.existingUserPanel1.Visible = false;
-            // 
-            // existingUserBtn1
-            // 
-            this.existingUserBtn1.Location = new System.Drawing.Point(65, 67);
-            this.existingUserBtn1.Name = "existingUserBtn1";
-            this.existingUserBtn1.Size = new System.Drawing.Size(75, 23);
-            this.existingUserBtn1.TabIndex = 2;
-            this.existingUserBtn1.Text = "Select";
-            this.existingUserBtn1.UseVisualStyleBackColor = true;
-            this.existingUserBtn1.Click += new System.EventHandler(this.existingUserBtn1_Click);
-            // 
-            // existingUserComboBox1
-            // 
-            this.existingUserComboBox1.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.existingUserComboBox1.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.existingUserComboBox1.FormattingEnabled = true;
-            this.existingUserComboBox1.Location = new System.Drawing.Point(40, 38);
-            this.existingUserComboBox1.Name = "existingUserComboBox1";
-            this.existingUserComboBox1.Size = new System.Drawing.Size(121, 27);
-            this.existingUserComboBox1.TabIndex = 1;
-            // 
-            // existingUser1Label
-            // 
-            this.existingUser1Label.AutoSize = true;
-            this.existingUser1Label.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.existingUser1Label.Location = new System.Drawing.Point(67, 18);
-            this.existingUser1Label.Name = "existingUser1Label";
-            this.existingUser1Label.Size = new System.Drawing.Size(79, 20);
-            this.existingUser1Label.TabIndex = 0;
-            this.existingUser1Label.Text = "Select user";
-            // 
-            // statisticsPanel
-            // 
-            this.statisticsPanel.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.statisticsPanel.Controls.Add(this.dataGridView1);
-            this.statisticsPanel.Controls.Add(this.statisticsHeader);
-            this.statisticsPanel.Location = new System.Drawing.Point(22, 12);
-            this.statisticsPanel.Name = "statisticsPanel";
-            this.statisticsPanel.Size = new System.Drawing.Size(728, 545);
-            this.statisticsPanel.TabIndex = 3;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(100, 75);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(549, 348);
-            this.dataGridView1.TabIndex = 2;
-            // 
-            // statisticsHeader
-            // 
-            this.statisticsHeader.AutoSize = true;
-            this.statisticsHeader.Font = new System.Drawing.Font("Sitka Text", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.statisticsHeader.Location = new System.Drawing.Point(281, 10);
-            this.statisticsHeader.Name = "statisticsHeader";
-            this.statisticsHeader.Size = new System.Drawing.Size(156, 47);
-            this.statisticsHeader.TabIndex = 0;
-            this.statisticsHeader.Text = "Statistics";
             // 
             // vsComputerPanel
             // 
@@ -655,8 +443,8 @@ namespace MemoryGame
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(294, 125);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "FAQ:\r\n\r\n1. Why aren\'t my statistics updated?\r\n   - Statistics are only saved on m" +
-    "ultiplayer mode\r\n   - %TEMP% env variable needs to be set\r\n\r\n";
+            this.textBox1.Text = "FAQ:\r\n\r\n1. Why aren\'t my statistics updated?\r\n   - Statistics are not saved on si" +
+    "ngle player mode\r\n   - %TEMP% env variable needs to be set\r\n\r\n";
             // 
             // errorPanel
             // 
@@ -782,6 +570,15 @@ namespace MemoryGame
             this.catsRadio.UseVisualStyleBackColor = true;
             this.catsRadio.CheckedChanged += new System.EventHandler(this.catsRadio_CheckedChanged);
             // 
+            // homePanel
+            // 
+            this.homePanel.Controls.Add(this.descriptionTextBox);
+            this.homePanel.Controls.Add(this.label14);
+            this.homePanel.Location = new System.Drawing.Point(22, 12);
+            this.homePanel.Name = "homePanel";
+            this.homePanel.Size = new System.Drawing.Size(351, 235);
+            this.homePanel.TabIndex = 6;
+            // 
             // descriptionTextBox
             // 
             this.descriptionTextBox.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -791,6 +588,209 @@ namespace MemoryGame
             this.descriptionTextBox.Size = new System.Drawing.Size(308, 54);
             this.descriptionTextBox.TabIndex = 2;
             this.descriptionTextBox.Text = "This game increases memory capacity!\r\n\r\n";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Sitka Text", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label14.Location = new System.Drawing.Point(25, 12);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(167, 47);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Welcome!";
+            // 
+            // statisticsPanel
+            // 
+            this.statisticsPanel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.statisticsPanel.Controls.Add(this.dataGridView1);
+            this.statisticsPanel.Controls.Add(this.statisticsHeader);
+            this.statisticsPanel.Location = new System.Drawing.Point(22, 12);
+            this.statisticsPanel.Name = "statisticsPanel";
+            this.statisticsPanel.Size = new System.Drawing.Size(728, 545);
+            this.statisticsPanel.TabIndex = 3;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(100, 75);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.Size = new System.Drawing.Size(549, 348);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // statisticsHeader
+            // 
+            this.statisticsHeader.AutoSize = true;
+            this.statisticsHeader.Font = new System.Drawing.Font("Sitka Text", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.statisticsHeader.Location = new System.Drawing.Point(281, 10);
+            this.statisticsHeader.Name = "statisticsHeader";
+            this.statisticsHeader.Size = new System.Drawing.Size(156, 47);
+            this.statisticsHeader.TabIndex = 0;
+            this.statisticsHeader.Text = "Statistics";
+            // 
+            // vsSinglePanel
+            // 
+            this.vsSinglePanel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.vsSinglePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.vsSinglePanel.Controls.Add(this.existingUserRadioBtn1);
+            this.vsSinglePanel.Controls.Add(this.newUserRadioBtn1);
+            this.vsSinglePanel.Controls.Add(this.label3);
+            this.vsSinglePanel.Controls.Add(this.label2);
+            this.vsSinglePanel.Controls.Add(this.label1);
+            this.vsSinglePanel.Controls.Add(this.newUserPanel1);
+            this.vsSinglePanel.Controls.Add(this.existingUserPanel1);
+            this.vsSinglePanel.Location = new System.Drawing.Point(22, 12);
+            this.vsSinglePanel.Name = "vsSinglePanel";
+            this.vsSinglePanel.Size = new System.Drawing.Size(350, 235);
+            this.vsSinglePanel.TabIndex = 0;
+            // 
+            // existingUserRadioBtn1
+            // 
+            this.existingUserRadioBtn1.AutoSize = true;
+            this.existingUserRadioBtn1.Location = new System.Drawing.Point(134, 35);
+            this.existingUserRadioBtn1.Name = "existingUserRadioBtn1";
+            this.existingUserRadioBtn1.Size = new System.Drawing.Size(14, 13);
+            this.existingUserRadioBtn1.TabIndex = 11;
+            this.existingUserRadioBtn1.TabStop = true;
+            this.existingUserRadioBtn1.UseVisualStyleBackColor = true;
+            this.existingUserRadioBtn1.CheckedChanged += new System.EventHandler(this.existingUserRadioBtn1_CheckedChanged);
+            // 
+            // newUserRadioBtn1
+            // 
+            this.newUserRadioBtn1.AutoSize = true;
+            this.newUserRadioBtn1.Location = new System.Drawing.Point(43, 35);
+            this.newUserRadioBtn1.Name = "newUserRadioBtn1";
+            this.newUserRadioBtn1.Size = new System.Drawing.Size(14, 13);
+            this.newUserRadioBtn1.TabIndex = 10;
+            this.newUserRadioBtn1.TabStop = true;
+            this.newUserRadioBtn1.UseVisualStyleBackColor = true;
+            this.newUserRadioBtn1.CheckedChanged += new System.EventHandler(this.newUserRadioBtn1_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Sitka Text", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(205, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(145, 70);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Player1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(102, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Existing user";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Cursor = System.Windows.Forms.Cursors.VSplit;
+            this.label1.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(23, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "New user";
+            // 
+            // newUserPanel1
+            // 
+            this.newUserPanel1.Controls.Add(this.newUser1Label);
+            this.newUserPanel1.Controls.Add(this.newUser1Btn);
+            this.newUserPanel1.Controls.Add(this.newUser1Name);
+            this.newUserPanel1.Controls.Add(this.newUserExistsError1);
+            this.newUserPanel1.Location = new System.Drawing.Point(43, 96);
+            this.newUserPanel1.Name = "newUserPanel1";
+            this.newUserPanel1.Size = new System.Drawing.Size(200, 100);
+            this.newUserPanel1.TabIndex = 7;
+            this.newUserPanel1.Visible = false;
+            // 
+            // newUser1Label
+            // 
+            this.newUser1Label.AutoSize = true;
+            this.newUser1Label.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.newUser1Label.Location = new System.Drawing.Point(68, 13);
+            this.newUser1Label.Name = "newUser1Label";
+            this.newUser1Label.Size = new System.Drawing.Size(75, 20);
+            this.newUser1Label.TabIndex = 2;
+            this.newUser1Label.Text = "Username";
+            // 
+            // newUser1Btn
+            // 
+            this.newUser1Btn.Enabled = false;
+            this.newUser1Btn.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.newUser1Btn.Location = new System.Drawing.Point(68, 64);
+            this.newUser1Btn.Name = "newUser1Btn";
+            this.newUser1Btn.Size = new System.Drawing.Size(75, 31);
+            this.newUser1Btn.TabIndex = 1;
+            this.newUser1Btn.Text = "Save";
+            this.newUser1Btn.UseVisualStyleBackColor = true;
+            this.newUser1Btn.Click += new System.EventHandler(this.newUser1Btn_Click);
+            // 
+            // newUser1Name
+            // 
+            this.newUser1Name.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.newUser1Name.Location = new System.Drawing.Point(56, 36);
+            this.newUser1Name.Name = "newUser1Name";
+            this.newUser1Name.Size = new System.Drawing.Size(100, 24);
+            this.newUser1Name.TabIndex = 0;
+            this.newUser1Name.TextChanged += new System.EventHandler(this.newUser1Name_TextChanged);
+            // 
+            // newUserExistsError1
+            // 
+            this.newUserExistsError1.AutoSize = true;
+            this.newUserExistsError1.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.newUserExistsError1.ForeColor = System.Drawing.Color.IndianRed;
+            this.newUserExistsError1.Location = new System.Drawing.Point(40, 68);
+            this.newUserExistsError1.Name = "newUserExistsError1";
+            this.newUserExistsError1.Size = new System.Drawing.Size(137, 20);
+            this.newUserExistsError1.TabIndex = 12;
+            this.newUserExistsError1.Text = "Name already exist";
+            this.newUserExistsError1.Visible = false;
+            // 
+            // existingUserPanel1
+            // 
+            this.existingUserPanel1.Controls.Add(this.existingUserBtn1);
+            this.existingUserPanel1.Controls.Add(this.existingUserComboBox1);
+            this.existingUserPanel1.Controls.Add(this.existingUser1Label);
+            this.existingUserPanel1.Location = new System.Drawing.Point(43, 96);
+            this.existingUserPanel1.Name = "existingUserPanel1";
+            this.existingUserPanel1.Size = new System.Drawing.Size(200, 100);
+            this.existingUserPanel1.TabIndex = 8;
+            this.existingUserPanel1.Visible = false;
+            // 
+            // existingUserBtn1
+            // 
+            this.existingUserBtn1.Location = new System.Drawing.Point(65, 67);
+            this.existingUserBtn1.Name = "existingUserBtn1";
+            this.existingUserBtn1.Size = new System.Drawing.Size(75, 23);
+            this.existingUserBtn1.TabIndex = 2;
+            this.existingUserBtn1.Text = "Select";
+            this.existingUserBtn1.UseVisualStyleBackColor = true;
+            this.existingUserBtn1.Click += new System.EventHandler(this.existingUserBtn1_Click);
+            // 
+            // existingUserComboBox1
+            // 
+            this.existingUserComboBox1.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.existingUserComboBox1.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.existingUserComboBox1.FormattingEnabled = true;
+            this.existingUserComboBox1.Location = new System.Drawing.Point(40, 38);
+            this.existingUserComboBox1.Name = "existingUserComboBox1";
+            this.existingUserComboBox1.Size = new System.Drawing.Size(121, 27);
+            this.existingUserComboBox1.TabIndex = 1;
+            // 
+            // existingUser1Label
+            // 
+            this.existingUser1Label.AutoSize = true;
+            this.existingUser1Label.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.existingUser1Label.Location = new System.Drawing.Point(67, 18);
+            this.existingUser1Label.Name = "existingUser1Label";
+            this.existingUser1Label.Size = new System.Drawing.Size(79, 20);
+            this.existingUser1Label.TabIndex = 0;
+            this.existingUser1Label.Text = "Select user";
             // 
             // Form1
             // 
@@ -807,17 +807,6 @@ namespace MemoryGame
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
-            this.homePanel.ResumeLayout(false);
-            this.homePanel.PerformLayout();
-            this.vsSinglePanel.ResumeLayout(false);
-            this.vsSinglePanel.PerformLayout();
-            this.newUserPanel1.ResumeLayout(false);
-            this.newUserPanel1.PerformLayout();
-            this.existingUserPanel1.ResumeLayout(false);
-            this.existingUserPanel1.PerformLayout();
-            this.statisticsPanel.ResumeLayout(false);
-            this.statisticsPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.vsComputerPanel.ResumeLayout(false);
             this.vsComputerPanel.PerformLayout();
             this.vsPlayerPanel.ResumeLayout(false);
@@ -835,6 +824,17 @@ namespace MemoryGame
             this.gameOptionPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.catsRadioImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.characterRadioImage)).EndInit();
+            this.homePanel.ResumeLayout(false);
+            this.homePanel.PerformLayout();
+            this.statisticsPanel.ResumeLayout(false);
+            this.statisticsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.vsSinglePanel.ResumeLayout(false);
+            this.vsSinglePanel.PerformLayout();
+            this.newUserPanel1.ResumeLayout(false);
+            this.newUserPanel1.PerformLayout();
+            this.existingUserPanel1.ResumeLayout(false);
+            this.existingUserPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }

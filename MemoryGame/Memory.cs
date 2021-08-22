@@ -156,7 +156,7 @@ namespace MemoryGame {
             this.existingPlayerNames = handler.parseNames();
         }
         public void updateData(Player player, int gamesPlayed, int gamesWon, int guesses, int correctGuesses) {
-            this.player1.UpdatePlayerInfo(gamesPlayed, gamesWon, guesses, correctGuesses);
+            player.UpdatePlayerInfo(gamesPlayed, gamesWon, guesses, correctGuesses);
             var data = player.recordForm();
             handler.updateRow(data);
         }

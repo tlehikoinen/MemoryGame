@@ -123,9 +123,9 @@ namespace MemoryGame {
 
         }
         private void checkAndSetMultiplayer() {
-            Player player1 = game.getMemoryPlayer1();
-            Player player2 = game.getMemoryPlayer2();
-            UpdateMultiplayerData(player1, player2);
+            Player GamePlayer1 = game.getMemoryPlayer1();
+            Player GamePlayer2 = game.getMemoryPlayer2();
+            UpdateMultiplayerData(GamePlayer1, GamePlayer2);
             setEndGameScreenMultiplayer(this.player1.getGuesses().correctGuesses == this.player2.getGuesses().correctGuesses);
             
         }
@@ -141,6 +141,7 @@ namespace MemoryGame {
         private void UpdateMultiplayerData(Player player1, Player player2) {
             int player1Guesses = this.player1.getGuesses().correctGuesses;
             int player2Guesses = this.player2.getGuesses().correctGuesses;
+            System.Diagnostics.Debug.WriteLine("Updating player 1 " + player1.name + " and player2 " + player2.name);
             if (player1Guesses == player2Guesses) {
                 game.updateData(player1, 1, 0, this.player1.getGuesses().guesses, this.player1.getGuesses().correctGuesses);
                 game.updateData(player2, 1, 0, this.player2.getGuesses().guesses, this.player2.getGuesses().correctGuesses);
@@ -170,11 +171,13 @@ namespace MemoryGame {
         /* END GAME PANELS */
         private void setEndGameScreenSinglePlayer() {
             Form2HideAll();
+            playAgainBtn.Visible = true;
             winnerPanelTextBox.Text = "Guesses : " + this.player1.getGuesses().guesses + "\r\n" + "Correct guesses : " + this.player1.getGuesses().correctGuesses;
             winnerPanelSP.Visible = true;
         }
         private void setEndGameScreenMultiplayer(Boolean draw) {
             Form2HideAll();
+            playAgainBtn.Visible = true;
             player1StatsLabel.Text = game.getMemoryPlayer1().name;
             if (game.getGameState() == Memory.State.multiplayer) {
                 player2StatsLabel.Text = game.getMemoryPlayer2().name;
@@ -307,7 +310,6 @@ namespace MemoryGame {
                 ComputerGuessResult result = this.computerWisdom.getGuess();
                 System.Diagnostics.Debug.WriteLine("Computer panels open " + result.panel1Number + " & " + result.panel2Number);
 
-
                 panelList.ElementAt(result.panel1Number).BackgroundImage = resizeImage(Image.FromFile(pictureAddresses[shuffledNumbers[result.panel1Number]]), panelList.ElementAt(1).Size);
                 wait(1500);
                 updateGuess();
@@ -333,9 +335,7 @@ namespace MemoryGame {
             } while (continueOrNot && state.ongoingCorrectGuesses != state.maximumCorrectGuesses);
             System.Diagnostics.Debug.WriteLine("** COMPUTER END **");
 
-
         }
-
 
 
         //foreach (int number in shuffledNumbers) {
@@ -345,8 +345,6 @@ namespace MemoryGame {
         //    panel.BackgroundImage = resizeImage(Image.FromFile(pictureAddresses[shuffledNumbers[int.Parse(panel.Name)]]), panel.Size);
         //}
         //pictureAddresses[shuffledNumbers[int.Parse(panel.Name)]]
-
-
 
         private void initialiseState() {
             Random rnd = new Random();
@@ -491,6 +489,12 @@ namespace MemoryGame {
             while (timer1.Enabled) {
                 Application.DoEvents();
             }
+        }
+
+        private void playAgainBtn_Click(object sender, EventArgs e) {
+            var f = new Form2(game);
+            this.Close();
+            f.Show();
         }
     }
 

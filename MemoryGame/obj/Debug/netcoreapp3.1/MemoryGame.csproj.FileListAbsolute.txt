@@ -44,7 +44,6 @@ C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\bin\Debug\netcoreapp3.1\MemoryGame.
 C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\bin\Debug\netcoreapp3.1\MemoryGame.dll
 C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\bin\Debug\netcoreapp3.1\MemoryGame.pdb
 C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\bin\Debug\netcoreapp3.1\CsvHelper.dll
-C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.csprojAssemblyReference.cache
 C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.Form1.resources
 C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.Form2.resources
 C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.Properties.Resources.resources
@@ -54,3 +53,7 @@ C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.
 C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.csproj.CopyComplete
 C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.dll
 C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.pdb
+C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.csproj.AssemblyReference.cache
+C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.csproj.CoreCompileInputs.cache
+C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.genruntimeconfig.cache
