@@ -130,8 +130,6 @@ namespace MemoryGame {
             setEndGameScreenMultiplayer(this.player1.getGuesses().correctGuesses == this.player2.getGuesses().correctGuesses);
 
         }
-
-
         private void UpdateMultiplayerData(Player player1, Player player2) {
             int player1Guesses = this.player1.getGuesses().correctGuesses;
             int player2Guesses = this.player2.getGuesses().correctGuesses;
@@ -200,7 +198,6 @@ namespace MemoryGame {
             int neededCards = state.maximumCorrectGuesses;
 
             // Big grid 6x6 will have 18 different cards
-            //int[] maxCards = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
             int[] maxCards = new int[state.cardDeckLength];
             System.Diagnostics.Debug.WriteLine("CARD DECK LENGTH = " + maxCards.Length);
             for (int i = 0; i < state.cardDeckLength; i++) {
@@ -268,27 +265,38 @@ namespace MemoryGame {
         private void initialiseGrid() {
             memoryGameGrid.ColumnCount = gridSizeInNumber(game.getGridSize()).column;
             memoryGameGrid.RowCount = gridSizeInNumber(game.getGridSize()).row;
-            var grids = memoryGameGrid.ColumnCount;
             var padding = 5;
+
+            /* leaves no space to memorygameGrid by resizing images according to the ratio between size of grid and row/column count
+            //var boxHeight = memoryGameGrid.Size.Height / gridSizeInNumber(game.getGridSize()).column - padding;
+            //var boxLength = memoryGameGrid.Size.Width / gridSizeInNumber(game.getGridSize()).row - padding;
+            */
+
+            /* Boxes are boxes, don't fit whole area but looks better */
+            var grids = memoryGameGrid.ColumnCount;
             var size = this.memoryGameGrid.Size.Width;
             var boxSize = ((size / grids) - padding);
-            var pictureSize = ((size / grids) - padding);
+            var boxHeight = ((size / grids) - padding);
+            var boxLength = ((size / grids) - padding);
+
 
             TableLayoutColumnStyleCollection colStyles = this.memoryGameGrid.ColumnStyles;
             foreach (ColumnStyle style in colStyles) {
                 style.SizeType = SizeType.Absolute;
-                style.Width = boxSize;
+                style.Width = boxHeight;
             }
             TableLayoutRowStyleCollection rowStyles = this.memoryGameGrid.RowStyles;
             foreach (RowStyle style in rowStyles) {
                 style.SizeType = SizeType.Absolute;
-                style.Height = boxSize;
+                style.Height = boxLength;
             }
             int k = 0;
             for (int i = 0; i < memoryGameGrid.ColumnCount; i++) {
                 for (int j = 0; j < memoryGameGrid.RowCount; j++) {
                     Panel panel = new Panel {
-                        Size = new Size(pictureSize, pictureSize),
+                        //Size = new Size(pictureSize, pictureSize),
+                        Size = new Size(boxHeight, boxLength),
+
                     };
                     int sum = k;
                     string rowPos = i + "," + j;
@@ -462,12 +470,6 @@ namespace MemoryGame {
 
         }
 
-        private void button8_Click(object sender, EventArgs e) {
-            System.Diagnostics.Debug.WriteLine(player1.getGuesses().guesses);
-            System.Diagnostics.Debug.WriteLine(player1.getGuesses().correctGuesses);
-            System.Diagnostics.Debug.WriteLine(player2.getGuesses().guesses);
-            System.Diagnostics.Debug.WriteLine(player2.getGuesses().correctGuesses);
-        }
         public void wait(int milliseconds) {
             var timer1 = new System.Windows.Forms.Timer();
             if (milliseconds == 0 || milliseconds < 0) return;

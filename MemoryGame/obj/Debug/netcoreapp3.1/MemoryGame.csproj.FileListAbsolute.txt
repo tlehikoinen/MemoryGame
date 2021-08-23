@@ -56,3 +56,4 @@ C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.
 C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.csproj.CoreCompileInputs.cache
 C:\Users\Tommi\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.genruntimeconfig.cache
+C:\Users\Opiskelu\Desktop\MemoryGame\MemoryGame\obj\Debug\netcoreapp3.1\MemoryGame.csproj.AssemblyReference.cache

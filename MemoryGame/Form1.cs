@@ -58,6 +58,7 @@ namespace MemoryGame {
             logoPictureBox.Image = Image.FromFile("../../../Pictures/Game/logo.png");
             catsRadioImage.Image = Image.FromFile("../../../Pictures/Game/catRadio.png");
             characterRadioImage.Image = Image.FromFile("../../../Pictures/Game/marioRadio.png");
+            ownRadioImage.Image = Image.FromFile("../../../Pictures/Game/ownRadio.png");
             errorPicture.Image = Image.FromFile("../../../Pictures/Game/error.png");
         }
 
@@ -296,6 +297,9 @@ namespace MemoryGame {
             
         }
 
+        private void ownRadioImage_Click(object sender, EventArgs e) {
+            this.ownPicturesRadio.Checked = true;
+        }
 
     }
 }
