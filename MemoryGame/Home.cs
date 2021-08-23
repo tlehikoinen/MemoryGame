@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 
 namespace MemoryGame {
-    public partial class Form1 : Form {
+    public partial class Home : Form {
         Memory game = new Memory();
-        public Form1() {
+        public Home() {
             InitializeComponent();
             Memory game = new Memory();
             this.game = game;
@@ -180,7 +180,7 @@ namespace MemoryGame {
         }
         private void startBtn_Click(object sender, EventArgs e) {
             if (readyToPlay()) {
-                var f = new Form2(game);
+                var f = new Game(game);
                 f.Owner = this;
                 f.Show();
                 this.Visible = false;

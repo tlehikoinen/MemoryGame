@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Opiskelu\\Desktop\\MemoryGame\\MemoryGame\\MemoryGame.csproj": {}
+    "C:\\Users\\Opiskelu\\Desktop\\IoT\\2021_FALL\\MemoryGame\\MemoryGame\\MemoryGame.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Opiskelu\\Desktop\\MemoryGame\\MemoryGame\\MemoryGame.csproj": {
+    "C:\\Users\\Opiskelu\\Desktop\\IoT\\2021_FALL\\MemoryGame\\MemoryGame\\MemoryGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Opiskelu\\Desktop\\MemoryGame\\MemoryGame\\MemoryGame.csproj",
+        "projectUniqueName": "C:\\Users\\Opiskelu\\Desktop\\IoT\\2021_FALL\\MemoryGame\\MemoryGame\\MemoryGame.csproj",
         "projectName": "MemoryGame",
-        "projectPath": "C:\\Users\\Opiskelu\\Desktop\\MemoryGame\\MemoryGame\\MemoryGame.csproj",
+        "projectPath": "C:\\Users\\Opiskelu\\Desktop\\IoT\\2021_FALL\\MemoryGame\\MemoryGame\\MemoryGame.csproj",
         "packagesPath": "C:\\Users\\Opiskelu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Opiskelu\\Desktop\\MemoryGame\\MemoryGame\\obj\\",
+        "outputPath": "C:\\Users\\Opiskelu\\Desktop\\IoT\\2021_FALL\\MemoryGame\\MemoryGame\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -1,6 +1,6 @@
 ﻿
 namespace MemoryGame {
-    partial class Form2 {
+    partial class Game {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -201,7 +201,7 @@ namespace MemoryGame {
             this.playAgainBtn.Visible = false;
             this.playAgainBtn.Click += new System.EventHandler(this.playAgainBtn_Click);
             // 
-            // Form2
+            // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -212,8 +212,8 @@ namespace MemoryGame {
             this.Controls.Add(this.currentPlayerLabel);
             this.Controls.Add(this.memoryGameGrid);
             this.Controls.Add(this.winnerPanelSP);
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.Name = "Game";
+            this.Text = "Game";
             this.winnerPanelMP.ResumeLayout(false);
             this.winnerPanelMP.PerformLayout();
             this.winnerPanelSP.ResumeLayout(false);

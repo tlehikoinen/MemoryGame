@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vAfB4hYvLeo9cGqYy6gSHFA1Wr1frnATYm3B4dwMBdnms9Pc9JQ2X5vfL7deQ8p2lFXpuRgmru2Zml67acYRIg==",
+  "dgSpecHash": "5Y8Qpt0aOh7zcYeH+kOVQGN/mQyaU8BuUJrEAK8Cu7ZVw4ais52+7NnxAsa9/uJC4kaG2paXlFHAiyF4izXCLA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Opiskelu\\Desktop\\MemoryGame\\MemoryGame\\MemoryGame.csproj",
+  "projectFilePath": "C:\\Users\\Opiskelu\\Desktop\\IoT\\2021_FALL\\MemoryGame\\MemoryGame\\MemoryGame.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Opiskelu\\.nuget\\packages\\csvhelper\\27.1.1\\csvhelper.27.1.1.nupkg.sha512",
     "C:\\Users\\Opiskelu\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"

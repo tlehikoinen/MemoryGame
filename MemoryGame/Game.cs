@@ -9,7 +9,7 @@ using System.IO;
 using System.Linq;
 
 namespace MemoryGame {
-    public partial class Form2 : Form {
+    public partial class Game : Form {
         Memory game = new Memory();
         GridSizeInNumber grid = new GridSizeInNumber();
         List<string> pictureAddresses = new List<string>();
@@ -26,7 +26,7 @@ namespace MemoryGame {
         ComputerPlayerWisdom computerWisdom;
 
 
-        public Form2(Memory game) {
+        public Game(Memory game) {
             this.game = game;
             InitializeComponent();
             initialiseGrid();
@@ -448,11 +448,10 @@ namespace MemoryGame {
 
         }
 
-
         private void exitButton_Click(object sender, EventArgs e) {
-            var f = new Form1();
+            var f = new Home();
             f.Show();
-            this.Visible = false;
+            this.Hide();
         }
         private Image resizeImage(Image image, Size size) {
             return (Image)(new Bitmap(image, size));
@@ -491,7 +490,7 @@ namespace MemoryGame {
         }
 
         private void playAgainBtn_Click(object sender, EventArgs e) {
-            var f = new Form2(game);
+            var f = new Game(game);
             this.Close();
             f.Show();
         }
