@@ -55,7 +55,8 @@ namespace MemoryGame {
         public enum DeckSelection {
             none,
             cats,
-            characters
+            characters,
+            own
         }
 
         public enum GridSize {

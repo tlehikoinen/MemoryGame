@@ -30,6 +30,7 @@ namespace MemoryGame
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.vsPlayerBtn = new System.Windows.Forms.Button();
             this.vsComputerBtn = new System.Windows.Forms.Button();
@@ -64,6 +65,8 @@ namespace MemoryGame
             this.errorTextBox = new System.Windows.Forms.TextBox();
             this.errorPicture = new System.Windows.Forms.PictureBox();
             this.gameOptionPanel = new System.Windows.Forms.Panel();
+            this.ownRadioImage = new System.Windows.Forms.PictureBox();
+            this.ownPicturesRadio = new System.Windows.Forms.RadioButton();
             this.label9 = new System.Windows.Forms.Label();
             this.gridSizes = new System.Windows.Forms.ComboBox();
             this.startBtn = new System.Windows.Forms.Button();
@@ -106,6 +109,7 @@ namespace MemoryGame
             this.errorPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorPicture)).BeginInit();
             this.gameOptionPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ownRadioImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.catsRadioImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.characterRadioImage)).BeginInit();
             this.homePanel.SuspendLayout();
@@ -443,8 +447,7 @@ namespace MemoryGame
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(294, 125);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "FAQ:\r\n\r\n1. Why aren\'t my statistics updated?\r\n   - Statistics are not saved on si" +
-    "ngle player mode\r\n   - %TEMP% env variable needs to be set\r\n\r\n";
+            this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // errorPanel
             // 
@@ -482,6 +485,8 @@ namespace MemoryGame
             // 
             this.gameOptionPanel.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.gameOptionPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gameOptionPanel.Controls.Add(this.ownRadioImage);
+            this.gameOptionPanel.Controls.Add(this.ownPicturesRadio);
             this.gameOptionPanel.Controls.Add(this.label9);
             this.gameOptionPanel.Controls.Add(this.gridSizes);
             this.gameOptionPanel.Controls.Add(this.startBtn);
@@ -493,6 +498,28 @@ namespace MemoryGame
             this.gameOptionPanel.Name = "gameOptionPanel";
             this.gameOptionPanel.Size = new System.Drawing.Size(351, 289);
             this.gameOptionPanel.TabIndex = 5;
+            // 
+            // ownRadioImage
+            // 
+            this.ownRadioImage.Location = new System.Drawing.Point(230, 99);
+            this.ownRadioImage.Name = "ownRadioImage";
+            this.ownRadioImage.Size = new System.Drawing.Size(100, 100);
+            this.ownRadioImage.TabIndex = 15;
+            this.ownRadioImage.TabStop = false;
+            this.ownRadioImage.Click += new System.EventHandler(this.ownRadioImage_Click);
+            // 
+            // ownPicturesRadio
+            // 
+            this.ownPicturesRadio.AutoSize = true;
+            this.ownPicturesRadio.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ownPicturesRadio.Location = new System.Drawing.Point(243, 62);
+            this.ownPicturesRadio.Name = "ownPicturesRadio";
+            this.ownPicturesRadio.Size = new System.Drawing.Size(55, 24);
+            this.ownPicturesRadio.TabIndex = 14;
+            this.ownPicturesRadio.TabStop = true;
+            this.ownPicturesRadio.Text = "own";
+            this.ownPicturesRadio.UseVisualStyleBackColor = true;
+            this.ownPicturesRadio.CheckedChanged += new System.EventHandler(this.ownPicturesRadio_CheckedChanged);
             // 
             // label9
             // 
@@ -518,7 +545,7 @@ namespace MemoryGame
             // startBtn
             // 
             this.startBtn.Font = new System.Drawing.Font("Sitka Text", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.startBtn.Location = new System.Drawing.Point(24, 205);
+            this.startBtn.Location = new System.Drawing.Point(62, 205);
             this.startBtn.Name = "startBtn";
             this.startBtn.Size = new System.Drawing.Size(236, 75);
             this.startBtn.TabIndex = 4;
@@ -530,7 +557,7 @@ namespace MemoryGame
             // 
             this.characterRadio.AutoSize = true;
             this.characterRadio.Font = new System.Drawing.Font("Sitka Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.characterRadio.Location = new System.Drawing.Point(160, 59);
+            this.characterRadio.Location = new System.Drawing.Point(127, 59);
             this.characterRadio.Name = "characterRadio";
             this.characterRadio.Size = new System.Drawing.Size(96, 24);
             this.characterRadio.TabIndex = 3;
@@ -541,7 +568,7 @@ namespace MemoryGame
             // 
             // catsRadioImage
             // 
-            this.catsRadioImage.Location = new System.Drawing.Point(24, 99);
+            this.catsRadioImage.Location = new System.Drawing.Point(17, 99);
             this.catsRadioImage.Name = "catsRadioImage";
             this.catsRadioImage.Size = new System.Drawing.Size(100, 100);
             this.catsRadioImage.TabIndex = 0;
@@ -550,7 +577,7 @@ namespace MemoryGame
             // 
             // characterRadioImage
             // 
-            this.characterRadioImage.Location = new System.Drawing.Point(160, 99);
+            this.characterRadioImage.Location = new System.Drawing.Point(123, 99);
             this.characterRadioImage.Name = "characterRadioImage";
             this.characterRadioImage.Size = new System.Drawing.Size(100, 100);
             this.characterRadioImage.TabIndex = 1;
@@ -822,6 +849,7 @@ namespace MemoryGame
             ((System.ComponentModel.ISupportInitialize)(this.errorPicture)).EndInit();
             this.gameOptionPanel.ResumeLayout(false);
             this.gameOptionPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ownRadioImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.catsRadioImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.characterRadioImage)).EndInit();
             this.homePanel.ResumeLayout(false);
@@ -906,6 +934,8 @@ namespace MemoryGame
         private System.Windows.Forms.Label newUserExistsError2;
         private System.Windows.Forms.Label newUserExistsError1;
         private System.Windows.Forms.TextBox descriptionTextBox;
+        private System.Windows.Forms.RadioButton ownPicturesRadio;
+        private System.Windows.Forms.PictureBox ownRadioImage;
     }
 }
 

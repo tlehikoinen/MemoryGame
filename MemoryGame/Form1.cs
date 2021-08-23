@@ -58,6 +58,7 @@ namespace MemoryGame {
             logoPictureBox.Image = Image.FromFile("../../../Pictures/Game/logo.png");
             catsRadioImage.Image = Image.FromFile("../../../Pictures/Game/catRadio.png");
             characterRadioImage.Image = Image.FromFile("../../../Pictures/Game/marioRadio.png");
+            ownRadioImage.Image = Image.FromFile("../../../Pictures/Game/ownRadio.png");
             errorPicture.Image = Image.FromFile("../../../Pictures/Game/error.png");
         }
 
@@ -165,6 +166,10 @@ namespace MemoryGame {
             var deck = (Memory.DeckSelection)Enum.Parse(typeof(Memory.DeckSelection), characterRadio.Text.ToString());
             game.setDeckSelection(deck);
         }
+        private void ownPicturesRadio_CheckedChanged(object sender, EventArgs e) {
+            var deck = (Memory.DeckSelection)Enum.Parse(typeof(Memory.DeckSelection), ownPicturesRadio.Text.ToString());
+            game.setDeckSelection(deck);
+        }
         private void gridSizes_SelectedIndexChanged(object sender, EventArgs e) {
             var size = (Memory.GridSize)Enum.Parse(typeof(Memory.GridSize), gridSizes.SelectedItem.ToString());
             game.setGridSize(size);
@@ -258,6 +263,11 @@ namespace MemoryGame {
                 errorTextBox.Text = "Choose deck";
                 return false;
             }
+            var ownPicturesCount = Directory.GetFiles("../../../Pictures/Images/Own").Length;
+            if (ownPicturesCount < 18 && game.getDeckSelection() == Memory.DeckSelection.own) {
+                errorTextBox.Text = "You need atleast 18 pictures in your own pictures folder \r\nCurrently you have : " + ownPicturesCount;
+                return false;
+            }
 
             switch (game.getGameState()) {
                 case Memory.State.singleplayer: {
@@ -271,18 +281,25 @@ namespace MemoryGame {
                     }
                     return true;
                 }
-                case Memory.State.vsComputer:
+                case Memory.State.vsComputer: { 
                     Player compPlayer = game.getComputerPlayer();
                     if (compPlayer == null) {
                         errorTextBox.Text = "Select computer difficulty";
-                    return false;
-                }
+                        return false;
+                    }
                 return true;
-
+                }
                 default:
                     return false;
 
             }
+
+            
         }
+
+        private void ownRadioImage_Click(object sender, EventArgs e) {
+            this.ownPicturesRadio.Checked = true;
+        }
+
     }
 }
